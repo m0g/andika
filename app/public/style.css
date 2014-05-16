@@ -1,0 +1,82 @@
+@font-face{
+  font-family: 'Source Serif Pro';
+  font-weight: 400;
+  font-style: normal;
+  font-stretch: normal;
+  src: local('SourceSerifPro-Regular'),
+       local('Source Serif Pro'),
+       url('fonts/EOT/SourceSerifPro-Regular.eot') format('embedded-opentype'),
+       url('fonts/WOFF/OTF/SourceSerifPro-Regular.otf.woff') format('woff'),
+       url('fonts/OTF/SourceSerifPro-Regular.otf') format('opentype'),
+       url('fonts/TTF/SourceSerifPro-Regular.ttf') format('truetype'),
+       url('fonts/SVG/SourceSerifPro-Regular.svg#SourceSerifPro-Regular') format('svg');
+}
+
+@font-face{
+  font-family: 'Source Serif Pro';
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  src: local('SourceSerifPro-Semibold'),
+       local('Source Serif Pro Semibold'),
+       url('fonts/EOT/SourceSerifPro-Semibold.eot') format('embedded-opentype'),
+       url('fonts/WOFF/OTF/SourceSerifPro-Semibold.otf.woff') format('woff'),
+       url('fonts/OTF/SourceSerifPro-Semibold.otf') format('opentype'),
+       url('fonts/TTF/SourceSerifPro-Semibold.ttf') format('truetype'),
+       url('fonts/SVG/SourceSerifPro-Semibold.svg#SourceSerifPro-Semibold') format('svg');
+}
+
+@font-face{
+  font-family: 'Source Serif Pro';
+  font-weight: 700;
+  font-style: normal;
+  font-stretch: normal;
+  src: local('SourceSerifPro-Bold'),
+       local('Source Serif Pro Bold'),
+       url('fonts/EOT/SourceSerifPro-Bold.eot') format('embedded-opentype'),
+       url('fonts/WOFF/OTF/SourceSerifPro-Bold.otf.woff') format('woff'),
+       url('fonts/OTF/SourceSerifPro-Bold.otf') format('opentype'),
+       url('fonts/TTF/SourceSerifPro-Bold.ttf') format('truetype'),
+       url('fonts/SVG/SourceSerifPro-Bold.svg#SourceSerifPro-Bold') format('svg');
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background: #D0CECF;
+}
+
+div.fade {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  background: #D0CECF;
+  opacity: 0.8;
+}
+
+div.fade.top {
+  top: 0;
+  box-shadow: #D0CECF 0px 7px 13px;
+}
+
+div.fade.bottom {
+  bottom: 0;
+  box-shadow: #D0CECF 0px -7px 13px;
+}
+
+#editor {
+  font-family: 'Source Serif Pro';
+  width: 800px;
+  margin: 10px auto;
+  font-size: 20px;
+  line-height: 32px;
+  padding: 25px 0;
+}
+
+#editor:focus {
+  outline: none;
+}
