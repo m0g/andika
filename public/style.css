@@ -81,3 +81,27 @@ div.fade.bottom {
 #editor:focus {
   outline: none;
 }
+
+::-webkit-scrollbar {
+  /*margin: 10px;*/
+  width: 12px;
+  background: #D0CECF;
+  /*border: 1px solid #333;*/
+}
+ 
+::-webkit-scrollbar-track {
+  /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid #333;
+  background: transparent;
+}
+ 
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: blue;
+  border: 1px solid #333;
+  background: transparent;
+  box-shadow: #D0CECF 0px 7px 13px;
+  /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); */
+}

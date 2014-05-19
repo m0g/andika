@@ -61,6 +61,16 @@ app.on('ready', function() {
       ]
     },
     {
+      label: 'Edit',
+      submenu: [
+        {
+          label: 'Undo',
+          accelerator: 'Ctrl+Z'
+          //click: function() { mainWindow.undo(); }
+        },
+      ]
+    },
+    {
       label: 'View',
       submenu: [
         {
