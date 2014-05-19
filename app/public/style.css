@@ -70,11 +70,12 @@ div.fade.bottom {
 
 #editor {
   font-family: 'Source Serif Pro';
-  width: 800px;
+  width: 750px;
   margin: 10px auto;
   font-size: 20px;
   line-height: 32px;
   padding: 25px 0;
+  color: #333;
 }
 
 #editor:focus {
