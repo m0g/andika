@@ -19,7 +19,6 @@ Writer.prototype.openFile = function(filePath, callback) {
   console.log('Writer::openFile', filePath);
 
   fs.readFile(filePath, 'utf8', function(err, data) {
-    console.log(data);
     callback(data);
   });
 };

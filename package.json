@@ -1,5 +1,9 @@
 {
-  "name"    : "writer",
+  "name"    : "andika",
+  "productName": "Andika",
   "version" : "0.1.0",
-  "main"    : "main.js"
+  "main"    : "main.js",
+  "dependencies" : {
+    "markdown": "*"
+  }
 }

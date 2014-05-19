@@ -29,7 +29,8 @@ app.on('ready', function() {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 1024, height: 700});
 
-  var template = [
+  var menu = null
+    , template = [
     {
       label: 'File',
       submenu: [
@@ -38,9 +39,18 @@ app.on('ready', function() {
           accelerator: 'Ctrl+O',
           click: function() {
             dialog.showOpenDialog({ properties: [ 'openFile' ]}, function(res) {
-             //app.emit('open-file', res[0]);
+              menu.items[0].submenu.items[1].enabled = true;
+              //menu = Menu.buildFromTemplate(template);
               mainWindow.webContents.send('open-file', res[0]);
             });
+          }
+        },
+        {
+          label: 'Save',
+          selector: 'save',
+          enabled: false,
+          accelerator: 'Ctrl+S',
+          click: function() {
           }
         },
         {
