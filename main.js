@@ -40,7 +40,7 @@ app.on('ready', function() {
           click: function() {
             dialog.showOpenDialog({ properties: [ 'openFile' ]}, function(res) {
               menu.items[0].submenu.items[1].enabled = true;
-              //menu = Menu.buildFromTemplate(template);
+              mainWindow.setMenu(menu);
               mainWindow.webContents.send('open-file', res[0]);
             });
           }
@@ -51,6 +51,7 @@ app.on('ready', function() {
           enabled: false,
           accelerator: 'Ctrl+S',
           click: function() {
+            mainWindow.webContents.send('save-current-file', true);
           }
         },
         {
