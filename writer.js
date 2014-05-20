@@ -1,10 +1,3 @@
-//var app = require('app')
-//  , Menu = require('menu')
-//  , MenuItem = require('menu-item')
-//  , fs = require('fs')
-//  , ipc = require('ipc')
-//  , BrowserWindow = require('browser-window');
-
 var fs = require('fs')
   , markdown = require( "markdown" ).markdown
   , toMarkdown = require('to-markdown').toMarkdown
