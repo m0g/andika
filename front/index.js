@@ -9,6 +9,16 @@
       , title = document.getElementsByTagName('title')[0]
       , editor = document.getElementById('editor');
 
+    var editorKeyUp = function() {
+      if(!currentFile && this.innerHTML.length > 0) {
+        ipc.sendChannel('init-new-file', true);
+        currentFile = 'New file';
+        editor.removeEventListener('keyup', editorKeyUp);
+      }
+    };
+
+    editor.addEventListener('keyup', editorKeyUp);
+
     ipc.sendChannel('window-loaded', true);
 
     ipc.on('open-file', function(filePath) {

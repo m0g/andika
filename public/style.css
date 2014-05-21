@@ -66,10 +66,10 @@
   font-family: 'SourceSansPro';
   src: url('fonts/EOT/sourcesanspro-semibold-webfont.eot');
   src: local('☺'), 
-    url('fonts/EOT/sourcesanspro-semibold-webfont.eot?#iefix') format('embedded-opentype'),
-    url('fonts/WOFF/sourcesanspro-semibold-webfont.woff') format('woff'), 
-    url('fonts/TTF/sourcesanspro-semibold-webfont.ttf') format('truetype'), 
-    url('fonts/SVG/sourcesanspro-semibold-webfont.svg') format('svg');
+    url('fonts/EOT/SourceSansPro-Semibold.eot?#iefix') format('embedded-opentype'),
+    url('fonts/WOFF/SourceSansPro-Semibold.woff') format('woff'), 
+    url('fonts/TTF/SourceSansPro-Semibold.ttf') format('truetype'), 
+    url('fonts/SVG/SourceSansPro-Semibold.svg') format('svg');
   font-weight: 600;
   font-style: normal;
 }
@@ -89,16 +89,22 @@
 h1, h2, h3 {
   font-family: 'SourceSansPro';
   text-shadow: 1px 1px #ddd;
+  font-weight: 600;
 }
 
 h1 {
   text-align: center;
   display: block;
+  font-weight: 400;
+}
+
+html, body {
+  min-height: 100%;
+  height: 100%;
 }
 
 html {
   position: relative;
-  min-height: 100%;
 }
 
 body {
@@ -132,6 +138,7 @@ div.fade.bottom {
   line-height: 32px;
   padding: 25px 0;
   color: #333;
+  min-height: 100%;
 }
 
 #editor:focus {

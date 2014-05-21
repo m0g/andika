@@ -1,6 +1,8 @@
 var app = require('app')
   , Menu = require('menu')
   , MenuItem = require('menu-item')
+  , ipc = require('ipc')
+  , MainMenu = require('./main_menu')
   , BrowserWindow = require('browser-window')  // Module to create native browser window
   //, Writer = require('./writer')
   , dialog = require('dialog');
@@ -29,82 +31,15 @@ app.on('ready', function() {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 1024, height: 700});
 
-  var menu = null
-    , template = [
-    {
-      label: 'File',
-      submenu: [
-        {
-          label: 'Open',
-          accelerator: 'Ctrl+O',
-          click: function() {
-            dialog.showOpenDialog({ properties: [ 'openFile' ]}, function(res) {
-              menu.items[0].submenu.items[1].enabled = true;
-              mainWindow.setMenu(menu);
-              mainWindow.webContents.send('open-file', res[0]);
-            });
-          }
-        },
-        {
-          label: 'Save',
-          selector: 'save',
-          enabled: false,
-          accelerator: 'Ctrl+S',
-          click: function() {
-            mainWindow.webContents.send('save-current-file', true);
-          }
-        },
-        {
-          label: 'Close',
-          accelerator: 'Ctrl+W',
-          click: function() { mainWindow.close(); }
-        },
-      ]
-    },
-    {
-      label: 'Edit',
-      submenu: [
-        {
-          label: 'Undo',
-          accelerator: 'Ctrl+Z'
-          //click: function() { mainWindow.undo(); }
-        },
-      ]
-    },
-    {
-      label: 'View',
-      submenu: [
-        {
-          label: 'Reload',
-          accelerator: 'Ctrl+R',
-          click: function() { mainWindow.restart(); }
-        },
-        {
-          label: 'Enter Fullscreen',
-          accelerator: 'F11',
-          click: function() { 
-            mainWindow.setFullScreen((!mainWindow.isFullScreen()));
-          }
-        },
-        {
-          label: 'Toggle DevTools',
-          accelerator: 'Alt+Ctrl+I',
-          click: function() { mainWindow.toggleDevTools(); }
-        },
-      ]
-    },
-  ];
-
-  //window.addEventListener('contextmenu', function (e) {
-  //  e.preventDefault();
-  //  menu.popup();
-  //}, false);
-
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
-  menu = Menu.buildFromTemplate(template);
-  mainWindow.setMenu(menu);
+  // Build window menu
+  var mainMenu = new MainMenu(mainWindow);
+
+  ipc.on('init-new-file', function() {
+    mainMenu.enableSave();
+  });
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
