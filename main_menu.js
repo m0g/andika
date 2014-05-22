@@ -2,12 +2,25 @@ var Menu = require('menu')
   , dialog = require('dialog');
 
 MainMenu = function(mainWindow) {
-  var openFileClick = function(res) {
+  var currentFile = '',
+
+  openFileClick = function(res) {
     dialog.showOpenDialog({ properties: ['openFile']}, function(res) {
+      currentFile = res[0];
       mainMenu.enableSave();
-      mainWindow.webContents.send('open-file', res[0]);
+      mainWindow.webContents.send('open-file', currentFile);
     });
-  };
+  },
+
+  save = function() {
+    if (currentFile)
+      mainWindow.webContents.send('save-current-file', true);
+    else
+      dialog.showSaveDialog({ title: 'new-file.md' }, function(res) {
+        currentFile = res;
+        mainWindow.webContents.send('save-new-file', res);
+      });
+  }
 
   this.mainWindow = mainWindow;
   this.menu = null
@@ -25,9 +38,7 @@ MainMenu = function(mainWindow) {
           selector: 'save',
           enabled: false,
           accelerator: 'Ctrl+S',
-          click: function() {
-            mainWindow.webContents.send('save-current-file', true);
-          }
+          click: save
         },
         {
           label: 'Close',
@@ -42,7 +53,6 @@ MainMenu = function(mainWindow) {
         {
           label: 'Undo',
           accelerator: 'Ctrl+Z'
-          //click: function() { mainWindow.undo(); }
         },
       ]
     },

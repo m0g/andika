@@ -35,5 +35,13 @@
         console.log(res);
       });
     });
+
+    ipc.on('save-new-file', function(filePath) {
+      alert('save new file');
+      writer.saveFile(filePath, editor.innerHTML, function(res) {
+        title.innerHTML = 'Andika - ' + filePath;
+        currentFile = filePath;
+      });
+    });
   };
 })();
