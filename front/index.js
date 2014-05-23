@@ -9,7 +9,8 @@
     var writer = new Writer()
       , currentFile = ''
       , title = document.getElementsByTagName('title')[0]
-      , editor = document.getElementById('editor');
+      , editor = document.getElementById('editor')
+      , charCounterVal = document.getElementById('char-counter-value');
 
     var editorKeyDown = function() {
       if(!currentFile && this.innerHTML.length > 0) {
@@ -17,9 +18,15 @@
         currentFile = 'New file';
         editor.removeEventListener('keyup', editorKeyUp);
       }
+    },
+
+    charCounter = function() {
+      charCounterVal.innerText = editor.innerText.length;
     };
 
+    // Events
     editor.addEventListener('keydown', editorKeyDown);
+    editor.addEventListener('keyup', charCounter);
     editor.addEventListener('keyup', setCursorLine);
     editor.addEventListener('click', setCursorLine);
 
@@ -34,15 +41,12 @@
     });
 
     ipc.on('save-current-file', function(toSave) {
-      //alert('To save');
       writer.saveFile(currentFile, editor.innerHTML, function(res) {
-        console.log(res);
         notify('File saved');
       });
     });
 
     ipc.on('save-new-file', function(filePath) {
-      //alert('save new file');
       writer.saveFile(filePath, editor.innerHTML, function(res) {
         title.innerHTML = 'Andika - ' + filePath;
         currentFile = filePath;

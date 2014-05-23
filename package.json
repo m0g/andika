@@ -5,6 +5,7 @@
   "main"    : "main.js",
   "dependencies" : {
     "markdown": "*",
-    "to-markdown": "*"
+    "to-markdown": "*",
+    "sanitize-html": "*"
   }
 }

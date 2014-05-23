@@ -1,6 +1,7 @@
 var fs = require('fs')
   , markdown = require( "markdown" ).markdown
   , toMarkdown = require('to-markdown').toMarkdown
+  , sanitizeHtml = require('sanitize-html')
   , ipc = require('ipc');
 
 String.prototype.decodeHTML = function() {
@@ -16,6 +17,7 @@ String.prototype.decodeHTML = function() {
 
 Writer = function() {
   this.currentBuffer = '';
+  this.nbChars = 0;
 
   console.log('Writer::construct');
 };
@@ -29,7 +31,11 @@ Writer.prototype.openFile = function(filePath, callback) {
 };
 
 Writer.prototype.saveFile = function(filePath, newContent, callback) {
-  newContent = toMarkdown(newContent.decodeHTML());
+  newContent = toMarkdown(sanitizeHtml(
+    newContent.decodeHTML(),
+    { allowedTags: [ 'b', 'i', 'em', 'strong', 'a', 'ul', 'li',
+                     'h1', 'h2', 'h3', 'a' ] }
+  ));
 
   fs.writeFile(filePath, newContent, function(err) {
     if(err) console.log(err);
