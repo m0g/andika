@@ -111,6 +111,38 @@ body {
   background: #D0CECF;
 }
 
+#notify {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  background: #333;
+  color: #D0CECF;
+  padding: 10px 15px;
+  z-index: 3;
+  border-radius: 5px;
+  font-family: 'SourceSansPro';
+  font-weight: 600;
+  /*opacity: 0.8;*/
+  opacity: 0;
+}
+
+@-webkit-keyframes fadeIn { from { opacity: 0; } to { opacity: 0.8; } }
+@-webkit-keyframes fadeOut { from { opacity: 0.8; } to { opacity: 0; } }
+
+.fade-in {
+  opacity: 0;  /* make things invisible upon start */
+  -webkit-animation:fadeIn ease-in 1;
+  -webkit-animation-fill-mode:forwards;
+  -webkit-animation-duration: 0.6s;
+}
+
+.fade-out {
+  opacity: 0.8;  /* make things invisible upon start */
+  -webkit-animation: fadeOut ease-in 1;
+  -webkit-animation-fill-mode:forwards;
+  -webkit-animation-duration:1s;
+}
+
 div.fade {
   position: fixed;
   left: 0;
@@ -118,6 +150,7 @@ div.fade {
   height: 25px;
   background: #D0CECF;
   opacity: 0.8;
+  z-index: 2;
 }
 
 div.fade.top {
@@ -137,12 +170,16 @@ div.fade.bottom {
   font-size: 20px;
   line-height: 32px;
   padding: 25px 0;
-  color: #333;
+  color: #666;
   min-height: 100%;
 }
 
 #editor:focus {
   outline: none;
+}
+
+#editor .current-position {
+  color: #111;
 }
 
 ::-webkit-scrollbar {
