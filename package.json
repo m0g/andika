@@ -2,7 +2,7 @@
   "name"    : "andika",
   "productName": "Andika",
   "version" : "0.1.0",
-  "main"    : "main.js",
+  "main"    : "browser.js",
   "dependencies" : {
     "markdown": "*",
     "to-markdown": "*",
