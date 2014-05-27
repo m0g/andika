@@ -105,10 +105,15 @@ html, body {
 
 html {
   position: relative;
+  /*border-top: 5px solid #EE6650*/
 }
 
 body {
   background: #D0CECF;
+}
+
+a {
+  color: #EE6650;
 }
 
 #notify {
@@ -199,25 +204,17 @@ div.fade.bottom {
 }
 
 ::-webkit-scrollbar {
-  /*margin: 10px;*/
-  width: 12px;
+  width: 8px;
   background: #D0CECF;
-  /*border: 1px solid #333;*/
 }
  
 ::-webkit-scrollbar-track {
-  /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
   margin: 10px;
   border-radius: 10px;
-  border: 1px solid #333;
   background: transparent;
 }
  
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: blue;
-  border: 1px solid #333;
-  background: transparent;
+  background: #EE6650;
   box-shadow: #D0CECF 0px 7px 13px;
-  /*-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); */
 }

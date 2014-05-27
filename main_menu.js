@@ -78,6 +78,32 @@ MainMenu = function(mainWindow) {
         },
       ]
     },
+    {
+      label: 'Format',
+      submenu: [
+        {
+          label: 'H1',
+          accelerator: 'Ctrl+1',
+          click: function() {
+            mainWindow.webContents.send('format-to-h1', true);
+          }
+        },
+        {
+          label: 'H2',
+          accelerator: 'Ctrl+2',
+          click: function() {
+            mainWindow.webContents.send('format-to-h2', true);
+          }
+        },
+        {
+          label: 'H3',
+          accelerator: 'Ctrl+3',
+          click: function() {
+            mainWindow.webContents.send('format-to-h3', true);
+          }
+        },
+      ]
+    }
   ];
 
   this.menu = Menu.buildFromTemplate(template);

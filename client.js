@@ -3,6 +3,7 @@
     , Writer = require('./writer')
     , notify = require('./notify')
     , setCursorLine = require('./set-cursor-line')
+    , FormatSelection = require('./format-selection')
     , ipc = require('ipc');
 
   window.onload = function() {
@@ -51,6 +52,21 @@
         title.innerHTML = 'Andika - ' + filePath;
         currentFile = filePath;
       });
+    });
+
+    ipc.on('format-to-h1', function() {
+      var formatSelection = new FormatSelection();
+      formatSelection.toH1();
+    });
+
+    ipc.on('format-to-h2', function() {
+      var formatSelection = new FormatSelection();
+      formatSelection.toH2();
+    });
+
+    ipc.on('format-to-h3', function() {
+      var formatSelection = new FormatSelection();
+      formatSelection.toH3();
     });
   };
 })();
