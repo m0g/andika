@@ -29,23 +29,38 @@
         writer.nbChars = editor.innerText.length;
     },
 
+    currentModified = function() {
+      currentFile.modified = true;
+      title.innerText = title.innerText.replace(/\s\*$/i, '') + ' *';
+      ipc.sendChannel('has-been-modified', true);
+    },
+
+    currentNotModified = function() {
+      currentFile.modified = false;
+      title.innerText = title.innerText.replace(/\s\*$/i, '');
+      ipc.sendChannel('has-been-modified', false);
+    },
+
     modifiedListener = function() {
       var hasBeenModified = writer.hasBeenModified(editor.innerText);
 
       if (currentFile.path == 'New file') {
-        currentFile.modified = true;
-        title.innerText = title.innerText.replace(/\s\*$/i, '') + ' *';
-        ipc.sendChannel('has-been-modified', true);
+        currentModified();
+        //currentFile.modified = true;
+        //title.innerText = title.innerText.replace(/\s\*$/i, '') + ' *';
+        //ipc.sendChannel('has-been-modified', true);
 
       } else if (hasBeenModified) {
-        currentFile.modified = true;
-        title.innerText = title.innerText.replace(/\s\*$/i, '') + ' *';
-        ipc.sendChannel('has-been-modified', true);
+        currentModified();
+        //currentFile.modified = true;
+        //title.innerText = title.innerText.replace(/\s\*$/i, '') + ' *';
+        //ipc.sendChannel('has-been-modified', true);
 
       } else {
-        currentFile.modified = false;
-        title.innerText = title.innerText.replace(/\s\*$/i, '');
-        ipc.sendChannel('has-been-modified', false);
+        currentNotModified();
+        //currentFile.modified = false;
+        //title.innerText = title.innerText.replace(/\s\*$/i, '');
+        //ipc.sendChannel('has-been-modified', false);
       }
     }
 
@@ -70,6 +85,8 @@
     ipc.on('save-current-file', function(toSave) {
       writer.saveFile(currentFile.path, editor.innerHTML, function(res) {
         notify('File saved');
+        currentNotModified();
+        writer.nbChars = editor.innerText.length;
       });
     });
 
@@ -77,6 +94,8 @@
       writer.saveFile(filePath, editor.innerHTML, function(res) {
         title.innerHTML = 'Andika - ' + filePath;
         currentFile.path = filePath;
+        currentNotModified();
+        writer.nbChars = editor.innerText.length;
       });
     });
 

@@ -42,7 +42,7 @@ app.on('ready', function() {
     mainMenu.enableSave();
   });
 
-  ipc.on('has-been-modified', function(value) {
+  ipc.on('has-been-modified', function(event, value) {
     confirmToClose = value;
   });
 

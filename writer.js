@@ -44,7 +44,6 @@ Writer.prototype.saveFile = function(filePath, newContent, callback) {
 };
 
 Writer.prototype.hasBeenModified = function(currentBuffer) {
-  console.log(currentBuffer.length, this.nbChars);
   return (currentBuffer.length != this.nbChars);
 }
 
