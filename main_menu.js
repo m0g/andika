@@ -43,7 +43,9 @@ MainMenu = function(mainWindow) {
         {
           label: 'Close',
           accelerator: 'Ctrl+W',
-          click: function() { mainWindow.close(); }
+          click: function() {
+            mainWindow.close();
+          }
         },
       ]
     },

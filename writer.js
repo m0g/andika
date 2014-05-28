@@ -16,7 +16,7 @@ String.prototype.decodeHTML = function() {
 };
 
 Writer = function() {
-  this.currentBuffer = '';
+  this.lastSaved = '';
   this.nbChars = 0;
 
   console.log('Writer::construct');
@@ -42,5 +42,10 @@ Writer.prototype.saveFile = function(filePath, newContent, callback) {
     else callback({ success: true });
   });
 };
+
+Writer.prototype.hasBeenModified = function(currentBuffer) {
+  console.log(currentBuffer.length, this.nbChars);
+  return (currentBuffer.length != this.nbChars);
+}
 
 module.exports = Writer;

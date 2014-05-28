@@ -35,21 +35,34 @@ app.on('ready', function() {
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
   // Build window menu
-  var mainMenu = new MainMenu(mainWindow);
+  var mainMenu = new MainMenu(mainWindow)
+    , confirmToClose = false;
 
   ipc.on('init-new-file', function() {
     mainMenu.enableSave();
   });
 
-  //ipc.on('init-new-file', function() {
-  //  writer.openFile(filePath);
-  //});
+  ipc.on('has-been-modified', function(value) {
+    confirmToClose = value;
+  });
 
-  // Emitted when the window is closed.
-  mainWindow.on('closed', function() {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
+  mainWindow.on('close', function(event) {
+    if (confirmToClose) event.preventDefault();
+
+    var currentWindow = mainWindow
+      , messageBoxOptions = { type: "warning",
+                              buttons: ['Save', 'Cancel', 'Quit'],
+                              message: "Are you sure you want to quit?" };
+
+    dialog.showMessageBox(messageBoxOptions, function(res) {
+      if (res == 2) {
+        confirmToClose = false;
+        mainWindow.close();
+      }
+    });
+  });
+
+  mainWindow.on('closed', function(event) {
     mainWindow = null;
   });
 });
