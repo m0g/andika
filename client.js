@@ -105,5 +105,10 @@
       var formatSelection = new FormatSelection();
       formatSelection.toH3();
     });
+
+    ipc.on('format-to-link', function() {
+      var formatSelection = new FormatSelection();
+      formatSelection.toLink();
+    });
   };
 })();

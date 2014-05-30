@@ -9,7 +9,7 @@
     this.heading.innerText = this.selection.toString();
     this.range.deleteContents();
     this.range.insertNode(this.heading);
-  }
+  };
 
   FormatSelection.prototype.toH1 = function() {
     this.toTag('h1');
@@ -21,6 +21,14 @@
 
   FormatSelection.prototype.toH3 = function() {
     this.toTag('h3');
+  };
+
+  FormatSelection.prototype.toLink = function() {
+    this.link = document.createElement('a');
+    this.link.href = this.selection.toString();
+    this.link.innerText = this.selection.toString();
+    this.range.deleteContents();
+    this.range.insertNode(this.link);
   };
 
   module.exports = FormatSelection;

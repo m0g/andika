@@ -104,6 +104,21 @@ MainMenu = function(mainWindow) {
             mainWindow.webContents.send('format-to-h3', true);
           }
         },
+        {
+          label: 'Link',
+          accelerator: 'Ctrl+K',
+          click: function() {
+            mainWindow.webContents.send('format-to-link', true);
+          }
+        },
+        {
+          label: 'Open link',
+          accelerator: 'Ctrl+Click',
+          click: function() {
+            alert('ctrl click');
+            //mainWindow.webContents.send('format-to-link', true);
+          }
+        }
       ]
     }
   ];
