@@ -2,13 +2,14 @@
   var fs = require('fs')
     , Writer = require('./writer')
     , notify = require('./notify')
+    //, map = require('./map')
+    , generateMap = require('./generate-map')
     , setCursorLine = require('./set-cursor-line')
     , FormatSelection = require('./format-selection')
     , ipc = require('ipc');
 
   window.onload = function() {
     var writer = new Writer()
-      //, currentFile = ''
       , currentFile = { name: '', path: '', modified: false }
       , title = document.getElementsByTagName('title')[0]
       , editor = document.getElementById('editor')
@@ -44,25 +45,13 @@
     modifiedListener = function() {
       var hasBeenModified = writer.hasBeenModified(editor.innerText);
 
-      if (currentFile.path == 'New file') {
+      if (currentFile.path == 'New file')
         currentModified();
-        //currentFile.modified = true;
-        //title.innerText = title.innerText.replace(/\s\*$/i, '') + ' *';
-        //ipc.sendChannel('has-been-modified', true);
-
-      } else if (hasBeenModified) {
+      else if (hasBeenModified)
         currentModified();
-        //currentFile.modified = true;
-        //title.innerText = title.innerText.replace(/\s\*$/i, '') + ' *';
-        //ipc.sendChannel('has-been-modified', true);
-
-      } else {
+      else
         currentNotModified();
-        //currentFile.modified = false;
-        //title.innerText = title.innerText.replace(/\s\*$/i, '');
-        //ipc.sendChannel('has-been-modified', false);
-      }
-    }
+    };
 
     // Events
     editor.addEventListener('keydown', editorKeyDown);
@@ -70,6 +59,8 @@
     editor.addEventListener('keyup', modifiedListener);
     editor.addEventListener('keyup', setCursorLine);
     editor.addEventListener('click', setCursorLine);
+    editor.addEventListener('keyup', generateMap);
+    editor.addEventListener('click', generateMap);
 
     ipc.sendChannel('window-loaded', true);
 
@@ -79,6 +70,7 @@
         editor.innerHTML = data;
         currentFile.path = filePath;
         writer.lastSaved = editor.innerHTML;
+        generateMap();
       });
     });
 
