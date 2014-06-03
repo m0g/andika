@@ -4,6 +4,8 @@ module.exports = function() {
       , divElem = document.createElement('div')
       , aElem = document.createElement('a');
 
+    //console.log('position:', position);
+
     divElem.className = 'title';
     aElem.href = '#';
     aElem.dataset.position = position;
@@ -18,7 +20,7 @@ module.exports = function() {
         , heightPercent = documentHeight / 100
         , scrollTop = position * heightPercent;
 
-      console.log(documentHeight, position, scrollTop);
+      //console.log(documentHeight, position, scrollTop);
       window.scroll(0, 30000);
     });
 
@@ -32,8 +34,13 @@ module.exports = function() {
     , heightPercent = documentHeight / 100
     , pointers = [];
 
+  //console.log('chapters:', chapters);
+  //console.log('scroll height:', documentHeight);
+
   for (var i = 0, chapter; chapter = chapters[i]; i++) {
-    var position = parseInt(chapter.getBoundingClientRect().top / heightPercent);
+    //console.log('chapter position:', chapter.getBoundingClientRect().top, chapter.offsetTop);
+    //var position = parseInt(chapter.getBoundingClientRect().top / heightPercent);
+    var position = parseInt(chapter.offsetTop / heightPercent);
     pointers.push(createPointer(position));
   }
 

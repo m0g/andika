@@ -2,7 +2,6 @@
   var fs = require('fs')
     , Writer = require('./writer')
     , notify = require('./notify')
-    //, map = require('./map')
     , generateMap = require('./generate-map')
     , setCursorLine = require('./set-cursor-line')
     , FormatSelection = require('./format-selection')
