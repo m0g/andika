@@ -32,7 +32,6 @@ module.exports = function() {
     , pointers = [];
 
   for (var i = 0, chapter; chapter = chapters[i]; i++) {
-    console.log(chapter.offsetTop);
     var position = parseInt(chapter.offsetTop / heightPercent);
     pointers.push(createPointer(position));
   }

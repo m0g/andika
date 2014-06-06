@@ -44,6 +44,7 @@ app.on('ready', function() {
 
   ipc.on('has-been-modified', function(event, value) {
     confirmToClose = value;
+    mainMenu.confirmToClose = value;
   });
 
   mainWindow.on('close', function(event) {

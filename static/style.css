@@ -96,6 +96,13 @@ h1 {
   text-align: center;
   display: block;
   font-weight: 400;
+  /*color: #9b2c1a;*/
+  color: #F43779;
+}
+
+h2, h3 {
+  /*color: #3a636f;*/
+  color: #33A7E4;
 }
 
 html, body {
@@ -114,7 +121,13 @@ body {
 }
 
 a {
-  color: #EE6650;
+  /*color: #EE6650;*/
+  color: #FF5039;
+}
+
+strong, b {
+  /*color: #83a452;*/
+  color: #30BD5D;
 }
 
 #notify {
@@ -275,6 +288,7 @@ div.fade.bottom {
 }
  
 ::-webkit-scrollbar-thumb {
-  background: #EE6650;
+  /*background: #EE6650;*/
+  background: #F43779;
   box-shadow: #D0CECF 0px 7px 13px;
 }

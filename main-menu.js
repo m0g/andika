@@ -1,15 +1,30 @@
 var Menu = require('menu')
+  , messageBox = require('./message-box')
   , dialog = require('dialog');
 
 MainMenu = function(mainWindow) {
   var currentFile = '',
 
+  newFileClick = function(res) {
+    if (mainMenu.confirmToClose)
+      messageBox.modified(function() {
+        mainWindow.webContents.send('new-file', true);
+      });
+    else
+      mainWindow.webContents.send('new-file', true);
+  },
+
   openFileClick = function(res) {
-    dialog.showOpenDialog({ properties: ['openFile']}, function(res) {
-      currentFile = res[0];
-      mainMenu.enableSave();
-      mainWindow.webContents.send('open-file', currentFile);
-    });
+    var dialogBox = function() {
+      dialog.showOpenDialog({ properties: ['openFile']}, function(res) {
+        currentFile = res[0];
+        mainMenu.enableSave();
+        mainWindow.webContents.send('open-file', currentFile);
+      });
+    };
+
+    if (mainMenu.confirmToClose) messageBox.modified(dialogBox);
+    else dialogBox();
   },
 
   save = function() {
@@ -22,12 +37,18 @@ MainMenu = function(mainWindow) {
       });
   }
 
+  this.confirmToClose = false;
   this.mainWindow = mainWindow;
   this.menu = null
     , template = [
     {
       label: 'File',
       submenu: [
+        {
+          label: 'New',
+          accelerator: 'Ctrl+N',
+          click: newFileClick
+        },
         {
           label: 'Open',
           accelerator: 'Ctrl+O',

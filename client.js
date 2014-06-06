@@ -43,6 +43,10 @@
       ipc.sendChannel('has-been-modified', false);
     },
 
+    clickLink = function(event) {
+      console.log(event.ctrlKey);
+    },
+
     modifiedListener = function() {
       var hasBeenModified = writer.hasBeenModified(editor.innerText);
 
@@ -63,7 +67,25 @@
     editor.addEventListener('keyup', generateMap);
     editor.addEventListener('click', generateMap);
 
+    //document.addEventListener('keydown', function(event) {
+    //  if (event.keyCode === 17)
+    //    editor.contentEditable = false;
+    //}, false);
+
+    //document.addEventListener('keyup', function(event) {
+    //  if (event.keyCode === 17)
+    //      editor.contentEditable = true;
+    //}, false);
+
     ipc.sendChannel('window-loaded', true);
+
+    ipc.on('new-file', function(val) {
+      title.innerHTML = 'Andika';
+      editor.innerHTML = '';
+      currentFile.path = '';
+
+      charAndWordCounter();
+    });
 
     ipc.on('open-file', function(filePath) {
       writer.openFile(filePath, function(data) {
