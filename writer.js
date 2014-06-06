@@ -18,13 +18,9 @@ String.prototype.decodeHTML = function() {
 Writer = function() {
   this.lastSaved = '';
   this.nbChars = 0;
-
-  console.log('Writer::construct');
 };
 
 Writer.prototype.openFile = function(filePath, callback) {
-  console.log('Writer::openFile', filePath);
-
   fs.readFile(filePath, 'utf8', function(err, data) {
     callback(markdown.toHTML(data));
   });

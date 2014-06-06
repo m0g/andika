@@ -12,7 +12,8 @@
       , currentFile = { name: '', path: '', modified: false }
       , title = document.getElementsByTagName('title')[0]
       , editor = document.getElementById('editor')
-      , charCounterVal = document.getElementById('char-counter-value');
+      , charCounterVal = document.getElementById('char-counter-value')
+      , wordCounterVal = document.getElementById('word-counter-value');
 
     var editorKeyDown = function() {
       if(!currentFile.path && this.innerHTML.length > 0) {
@@ -22,8 +23,9 @@
       }
     },
 
-    charCounter = function() {
+    charAndWordCounter = function() {
       charCounterVal.innerText = editor.innerText.length;
+      wordCounterVal.innerText = editor.innerText.split(/\s+/).length;
 
       if(writer.nbChars == 0)
         writer.nbChars = editor.innerText.length;
@@ -54,7 +56,7 @@
 
     // Events
     editor.addEventListener('keydown', editorKeyDown);
-    editor.addEventListener('keyup', charCounter);
+    editor.addEventListener('keyup', charAndWordCounter);
     editor.addEventListener('keyup', modifiedListener);
     editor.addEventListener('keyup', setCursorLine);
     editor.addEventListener('click', setCursorLine);
@@ -69,7 +71,9 @@
         editor.innerHTML = data;
         currentFile.path = filePath;
         writer.lastSaved = editor.innerHTML;
+
         generateMap();
+        charAndWordCounter();
       });
     });
 

@@ -18,9 +18,12 @@ module.exports = function() {
   }
 
   var childElements = document.querySelectorAll('.current-position');
+  //var childElements = document.getElementById('editor').childNodes;
 
-  for (var i = 0, childElement; childElement = childElements[i]; i++)
+  for (var i = 0, childElement; childElement = childElements[i]; i++) {
     childElement.className = '';
+    childElement.removeAttribute('style');
+  }
 
   var lineElements = ['div', 'li', 'p', 'h1', 'h2', 'h3']
     , selectedNode = getSelectedNode();
