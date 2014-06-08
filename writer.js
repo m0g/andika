@@ -27,9 +27,10 @@ Writer.prototype.openFile = function(filePath, callback) {
 };
 
 Writer.prototype.saveFile = function(filePath, newContent, callback) {
+  console.log(newContent.decodeHTML());
   newContent = toMarkdown(sanitizeHtml(
     newContent.decodeHTML(),
-    { allowedTags: [ 'b', 'i', 'em', 'strong', 'a', 'ul', 'li',
+    { allowedTags: [ 'b', 'i', 'em', 'strong', 'p', 'ul', 'li',
                      'h1', 'h2', 'h3', 'a' ] }
   ));
 
