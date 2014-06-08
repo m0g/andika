@@ -123,19 +123,22 @@ body {
 a {
   /*color: #EE6650;*/
   color: #FF5039;
+  text-decoration: underline;
 }
 
 strong, b {
   /*color: #83a452;*/
-  color: #30BD5D;
+  /*color: #30BD5D;*/
+  color: #0AAF3F;
 }
 
 #notify {
   position: fixed;
   right: 20px;
   top: 10px;
-  background: #333;
-  color: #D0CECF;
+  /*background: #30BD5D;*/
+  background: #0AAF3F;
+  color: #fff;
   padding: 10px 15px;
   z-index: 3;
   /*border-radius: 5px;*/

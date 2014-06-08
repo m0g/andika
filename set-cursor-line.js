@@ -18,7 +18,6 @@ module.exports = function() {
   }
 
   var childElements = document.querySelectorAll('.current-position');
-  //var childElements = document.getElementById('editor').childNodes;
 
   for (var i = 0, childElement; childElement = childElements[i]; i++) {
     childElement.className = '';

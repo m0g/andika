@@ -6,7 +6,14 @@
 
   FormatSelection.prototype.toTag = function(tag) {
     this.heading = document.createElement(tag);
-    this.heading.innerText = this.selection.toString();
+
+    if (this.selection.toString().length > 0)
+      this.heading.innerText = this.selection.toString();
+    else {
+      this.heading.innerText = this.range.startContainer.parentNode.innerText;
+      this.range.startContainer.parentNode.innerText = '';
+    }
+
     this.range.deleteContents();
     this.range.insertNode(this.heading);
   };
