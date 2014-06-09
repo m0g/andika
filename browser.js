@@ -4,6 +4,7 @@ var app = require('app')
   , ipc = require('ipc')
   , MainMenu = require('./main-menu')
   , BrowserWindow = require('browser-window')  // Module to create native browser window
+  , open = require('open')
   , dialog = require('dialog');
 
 //var npmcss = require('npm-css');
@@ -44,6 +45,10 @@ app.on('ready', function() {
 
   ipc.on('init-new-file', function() {
     mainMenu.enableSave();
+  });
+
+  ipc.on('open-anchor', function(event, link) {
+    open(link);
   });
 
   ipc.on('has-been-modified', function(event, value) {

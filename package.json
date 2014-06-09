@@ -12,7 +12,8 @@
     "medium-editor": "*",
     "rework": "*",
     "rework-npm": "*",
-    "sanitize-html": "*"
+    "sanitize-html": "*",
+    "open": "0.0.5"
   },
   "devDependencies": {
     "clean-css": "~2.1.8",

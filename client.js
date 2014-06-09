@@ -18,15 +18,34 @@
 
     console.log(MediumEditor);
 
+    // Override default anchor preview behavior
+    // TODO: Add an edit button after the link
+    MediumEditor.prototype.createAnchorPreview = function() {
+      var self = this,
+          anchorPreview = document.createElement('div');
+
+      anchorPreview.id = 'medium-editor-anchor-preview-' + this.id;
+      anchorPreview.className = 'medium-editor-anchor-preview';
+      anchorPreview.innerHTML = this.anchorPreviewTemplate();
+      this.options.elementsContainer.appendChild(anchorPreview);
+
+      anchorPreview.addEventListener('click', function () {
+        //alert(anchorPreview.querySelector('i').textContent);
+        //  self.anchorPreviewClickHandler();
+        ipc.sendChannel('open-anchor',
+                        anchorPreview.querySelector('i').textContent);
+      });
+
+      return anchorPreview;
+    }
+
     var mediumEditor = new MediumEditor('#editor', {
       placeholder: '',
       buttons: ['bold', 'italic', 'quote', 'underline',
                 'anchor', 'unorderedlist'],
-      //diffLeft: 25,
-      //diffTop: 10,
+      cleanPastedHTML: true,
       firstHeader: 'h1',
       secondHeader: 'h2',
-      //delay: 1000,
       targetBlank: true
     });
 
@@ -59,7 +78,17 @@
     },
 
     clickLink = function(event) {
-      console.log(event.ctrlKey);
+      var links = editor.getElementsByTagName('a');
+
+      for (var i = 0, link; link = links[i]; i++)
+        link.onclick = function(event) {
+          event.preventDefault();
+          alert('User has clicked!');
+        };
+    },
+
+    overrideAnchors = function() {
+      editor.addEventListener('keyup', setCursorLine);
     },
 
     modifiedListener = function() {
@@ -78,19 +107,15 @@
     editor.addEventListener('keyup', charAndWordCounter);
     editor.addEventListener('keyup', modifiedListener);
     editor.addEventListener('keyup', setCursorLine);
+    editor.addEventListener('keyup', overrideAnchors);
     editor.addEventListener('click', setCursorLine);
     editor.addEventListener('keyup', generateMap);
     editor.addEventListener('click', generateMap);
 
-    //document.addEventListener('keydown', function(event) {
-    //  if (event.keyCode === 17)
-    //    editor.contentEditable = false;
-    //}, false);
-
-    //document.addEventListener('keyup', function(event) {
-    //  if (event.keyCode === 17)
-    //      editor.contentEditable = true;
-    //}, false);
+    //editor.getElementsByTagName('a').addEventListener('click', function(event) {
+    //  event.preventDefault();
+    //  alert('He clicked on a link!');
+    //});
 
     ipc.sendChannel('window-loaded', true);
 
