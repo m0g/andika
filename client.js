@@ -16,8 +16,6 @@
       , charCounterVal = document.getElementById('char-counter-value')
       , wordCounterVal = document.getElementById('word-counter-value');
 
-    console.log(MediumEditor);
-
     // Override default anchor preview behavior
     // TODO: Add an edit button after the link
     MediumEditor.prototype.createAnchorPreview = function() {
@@ -30,8 +28,6 @@
       this.options.elementsContainer.appendChild(anchorPreview);
 
       anchorPreview.addEventListener('click', function () {
-        //alert(anchorPreview.querySelector('i').textContent);
-        //  self.anchorPreviewClickHandler();
         ipc.sendChannel('open-anchor',
                         anchorPreview.querySelector('i').textContent);
       });
@@ -41,11 +37,12 @@
 
     var mediumEditor = new MediumEditor('#editor', {
       placeholder: '',
-      buttons: ['bold', 'italic', 'quote', 'underline',
+      buttons: ['bold', 'italic', 'quote',
                 'anchor', 'unorderedlist'],
       cleanPastedHTML: true,
       firstHeader: 'h1',
       secondHeader: 'h2',
+      delay: 200,
       targetBlank: true
     });
 

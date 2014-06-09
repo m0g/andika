@@ -437,9 +437,19 @@ a {
 
 strong,
 b {
-  /*color: #83a452;*/
-  /*color: #30BD5D;*/
   color: #0AAF3F;
+}
+
+u {
+  color: #FF9439;
+}
+
+em {
+  color: #33A7E4;
+}
+
+strike {
+  color: #33A7E4;
 }
 
 #notify {
@@ -525,6 +535,7 @@ div.fade {
   background: #D0CECF;
   opacity: 0.8;
   z-index: 2;
+  width: calc(100% - 10px);
 }
 
 div.fade.top {

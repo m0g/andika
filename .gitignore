@@ -2,3 +2,5 @@
 *.swo
 
 node_modules
+
+static/bundle.css
