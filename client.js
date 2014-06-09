@@ -1,11 +1,12 @@
 (function() {
   var fs = require('fs')
+    , MediumEditor = require('medium-editor')
+    , ipc = require('ipc')
     , Writer = require('./writer')
     , notify = require('./notify')
     , generateMap = require('./generate-map')
     , setCursorLine = require('./set-cursor-line')
-    , FormatSelection = require('./format-selection')
-    , ipc = require('ipc');
+    , FormatSelection = require('./format-selection');
 
   window.onload = function() {
     var writer = new Writer()
@@ -14,6 +15,20 @@
       , editor = document.getElementById('editor')
       , charCounterVal = document.getElementById('char-counter-value')
       , wordCounterVal = document.getElementById('word-counter-value');
+
+    console.log(MediumEditor);
+
+    var mediumEditor = new MediumEditor('#editor', {
+      placeholder: '',
+      buttons: ['bold', 'italic', 'quote', 'underline',
+                'anchor', 'unorderedlist'],
+      //diffLeft: 25,
+      //diffTop: 10,
+      firstHeader: 'h1',
+      secondHeader: 'h2',
+      //delay: 1000,
+      targetBlank: true
+    });
 
     var editorKeyDown = function() {
       if(!currentFile.path && this.innerHTML.length > 0) {

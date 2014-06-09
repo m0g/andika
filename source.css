@@ -1,5 +1,5 @@
 @import "medium-editor/dist/css/medium-editor.css";
-@import "medium-editor/dist/css/themes/default.css";
+@import "medium-editor/dist/css/themes/flat.css";
 
 @font-face{
   font-family: 'Source Serif Pro';
@@ -297,4 +297,8 @@ div.fade.bottom {
   /*background: #EE6650;*/
   background: #F43779;
   box-shadow: #D0CECF 0px 7px 13px;
+}
+
+.medium-editor-toolbar li button b {
+  color: #fff;
 }

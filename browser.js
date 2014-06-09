@@ -4,8 +4,11 @@ var app = require('app')
   , ipc = require('ipc')
   , MainMenu = require('./main-menu')
   , BrowserWindow = require('browser-window')  // Module to create native browser window
-  //, Writer = require('./writer')
   , dialog = require('dialog');
+
+//var npmcss = require('npm-css');
+//var rework = require('rework'),
+//    reworkNPM = require('rework-npm');
 
 // Report crashes to our server.
 require('crash-reporter').start();
@@ -30,6 +33,7 @@ app.on('open-file', function(filePath) {
 app.on('ready', function() {
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 1024, height: 700});
+  //var css = npmcss('static/style.css');
 
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/index.html');

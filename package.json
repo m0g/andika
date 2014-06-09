@@ -1,11 +1,22 @@
 {
-  "name"    : "andika",
+  "name": "andika",
   "productName": "Andika",
-  "version" : "0.1.0",
-  "main"    : "browser.js",
-  "dependencies" : {
+  "version": "0.1.0",
+  "main": "browser.js",
+  "scripts": {
+    "bundle": "rework-npm source.css -o static/bundle.css"
+  },
+  "dependencies": {
     "markdown": "*",
     "to-markdown": "*",
+    "medium-editor": "*",
+    "rework": "*",
+    "rework-npm": "*",
     "sanitize-html": "*"
+  },
+  "devDependencies": {
+    "clean-css": "~2.1.8",
+    "rework-npm-cli": "~0.1.1",
+    "myth": "~1.0.4"
   }
 }
