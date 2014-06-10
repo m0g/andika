@@ -134,7 +134,7 @@ strong, b {
 }
 
 u { color: #FF9439; }
-em { color: #33A7E4; }
+i, em { color: #33A7E4; }
 strike { color: #33A7E4; }
 
 #notify {
@@ -151,6 +151,10 @@ strike { color: #33A7E4; }
   font-weight: 600;
   /*opacity: 0.8;*/
   opacity: 0;
+}
+
+#notify.error {
+  background: #FF5039;
 }
 
 #status-bar {
@@ -211,7 +215,7 @@ div.fade.top {
 
 div.fade.bottom {
   bottom: 0;
-  box-shadow: #D0CECF 0px -7px 13px;
+  box-shadow: #D0CECF 0px -16px 13px;
 }
 
 #map {
@@ -255,7 +259,7 @@ div.fade.bottom {
   overflow-y: auto;
   position: absolute;
   top: 20px;
-  bottom: 20px;
+  bottom: 37px;
   left: 0;
   right: 0;
 }
@@ -302,6 +306,13 @@ div.fade.bottom {
   box-shadow: #D0CECF 0px 7px 13px;
 }
 
+::selection {
+  background: #FF9439;
+  color: #fff;
+}
+
+i.medium-editor-toolbar-anchor-preview-inner,
+.medium-editor-toolbar li button i,
 .medium-editor-toolbar li button b {
   color: #fff;
 }

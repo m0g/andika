@@ -17,9 +17,12 @@ MainMenu = function(mainWindow) {
   openFileClick = function(res) {
     var dialogBox = function() {
       dialog.showOpenDialog({ properties: ['openFile']}, function(res) {
-        currentFile = res[0];
-        mainMenu.enableSave();
-        mainWindow.webContents.send('open-file', currentFile);
+        if (res) {
+          if (res[0].match(/\.md$|\.markdown$/i))
+          currentFile = res[0];
+
+          mainWindow.webContents.send('open-file', currentFile);
+        }
       });
     };
 
@@ -28,12 +31,16 @@ MainMenu = function(mainWindow) {
   },
 
   save = function() {
+    if (!mainMenu.saveStatus()) return false;
+
     if (currentFile)
       mainWindow.webContents.send('save-current-file', true);
     else
       dialog.showSaveDialog({ title: 'new-file.md' }, function(res) {
-        currentFile = res;
-        mainWindow.webContents.send('save-new-file', res);
+        if (res) {
+          currentFile = res;
+          mainWindow.webContents.send('save-new-file', res);
+        }
       });
   }
 
@@ -153,5 +160,9 @@ MainMenu.prototype.enableSave = function() {
   this.menu.items[0].submenu.items[1].enabled = true;
   this.mainWindow.setMenu(this.menu);
 }
+
+MainMenu.prototype.saveStatus = function() {
+  return this.menu.items[0].submenu.items[1].enabled;
+};
 
 module.exports = MainMenu;

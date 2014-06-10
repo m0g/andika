@@ -20,10 +20,12 @@ Writer = function() {
   this.nbChars = 0;
 };
 
-Writer.prototype.openFile = function(filePath, callback) {
-  fs.readFile(filePath, 'utf8', function(err, data) {
-    callback(markdown.toHTML(data));
-  });
+Writer.prototype.openFile = function(filePath, successCallback, errorCallback) {
+  if (filePath.match(/\.md$|\.markdown$/i))
+    fs.readFile(filePath, 'utf8', function(err, data) {
+      successCallback(markdown.toHTML(data));
+    });
+  else errorCallback();
 };
 
 Writer.prototype.saveFile = function(filePath, newContent, callback) {

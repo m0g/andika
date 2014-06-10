@@ -44,6 +44,7 @@ app.on('ready', function() {
     , confirmToClose = false;
 
   ipc.on('init-new-file', function() {
+    console.log('enable save');
     mainMenu.enableSave();
   });
 
@@ -54,6 +55,10 @@ app.on('ready', function() {
   ipc.on('has-been-modified', function(event, value) {
     confirmToClose = value;
     mainMenu.confirmToClose = value;
+  });
+
+  ipc.on('enable-save', function(event, value) {
+    if (value) mainMenu.enableSave();
   });
 
   mainWindow.on('close', function(event) {

@@ -109,11 +109,6 @@
     editor.addEventListener('keyup', generateMap);
     editor.addEventListener('click', generateMap);
 
-    //editor.getElementsByTagName('a').addEventListener('click', function(event) {
-    //  event.preventDefault();
-    //  alert('He clicked on a link!');
-    //});
-
     ipc.sendChannel('window-loaded', true);
 
     ipc.on('new-file', function(val) {
@@ -131,8 +126,12 @@
         currentFile.path = filePath;
         writer.lastSaved = editor.innerHTML;
 
+        ipc.sendChannel('enable-save', true);
+
         generateMap();
         charAndWordCounter();
+      }, function() {
+        notify('Error: file is not a valid .md or .markdown file', true);
       });
     });
 
