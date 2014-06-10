@@ -143,6 +143,20 @@ MainMenu = function(mainWindow) {
           }
         },
         {
+          label: 'Bold',
+          accelerator: 'Ctrl+B',
+          click: function() {
+            mainWindow.webContents.send('format-to-bold', true);
+          }
+        },
+        {
+          label: 'Italic',
+          accelerator: 'Ctrl+I',
+          click: function() {
+            mainWindow.webContents.send('format-to-italic', true);
+          }
+        },
+        {
           label: 'Link',
           accelerator: 'Ctrl+K',
           click: function() {

@@ -137,6 +137,28 @@ u { color: #FF9439; }
 i, em { color: #33A7E4; }
 strike { color: #33A7E4; }
 
+#loader {
+  position: absolute;
+  background: rgba(0,0,0,0.8);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 3;
+  color: #fff;
+  display: none;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+#loader div.text {
+  font-family: 'SourceSansPro';
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+}
+
 #notify {
   position: fixed;
   right: 20px;
@@ -292,18 +314,21 @@ div.fade.bottom {
 ::-webkit-scrollbar {
   width: 8px;
   background: #D0CECF;
+  z-index: 4;
 }
  
 ::-webkit-scrollbar-track {
   margin: 10px;
   border-radius: 10px;
   background: transparent;
+  z-index: 4;
 }
  
 ::-webkit-scrollbar-thumb {
   /*background: #EE6650;*/
   background: #F43779;
   box-shadow: #D0CECF 0px 7px 13px;
+  z-index: 4;
 }
 
 ::selection {

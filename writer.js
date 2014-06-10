@@ -21,11 +21,16 @@ Writer = function() {
 };
 
 Writer.prototype.openFile = function(filePath, successCallback, errorCallback) {
-  if (filePath.match(/\.md$|\.markdown$/i))
+  var loader = document.getElementById('loader');
+
+  if (filePath.match(/\.md$|\.markdown$/i)) {
+    loader.style.display = 'block';
+
     fs.readFile(filePath, 'utf8', function(err, data) {
+      loader.style.display = 'none';
       successCallback(markdown.toHTML(data));
     });
-  else errorCallback();
+  } else errorCallback();
 };
 
 Writer.prototype.saveFile = function(filePath, newContent, callback) {

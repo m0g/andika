@@ -172,6 +172,14 @@
       formatSelection.toLink();
     });
 
+    ipc.on('format-to-bold', function() {
+      document.execCommand('bold', false, null);
+    });
+
+    ipc.on('format-to-italic', function() {
+      document.execCommand('italic', false, null);
+    });
+
     ipc.on('undo', function() {
       document.execCommand('undo', false, null);
     });
