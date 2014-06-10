@@ -82,8 +82,18 @@ MainMenu = function(mainWindow) {
       submenu: [
         {
           label: 'Undo',
-          accelerator: 'Ctrl+Z'
+          accelerator: 'Ctrl+Z',
+          click: function() {
+            mainWindow.webContents.send('undo', true);
+          }
         },
+        {
+          label: 'Redo',
+          accelerator: 'Ctrl+Y',
+          click: function() {
+            mainWindow.webContents.send('redo', true);
+          }
+        }
       ]
     },
     {

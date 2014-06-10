@@ -171,5 +171,13 @@
       var formatSelection = new FormatSelection();
       formatSelection.toLink();
     });
+
+    ipc.on('undo', function() {
+      document.execCommand('undo', false, null);
+    });
+
+    ipc.on('redo', function() {
+      document.execCommand('redo', false, null);
+    });
   };
 })();
