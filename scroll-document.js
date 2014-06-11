@@ -1,19 +1,24 @@
 (function() {
+  var cursorPosition = require('./cursor-position');
+
+  // Scroll to the top of the document
   exports.toTop = function() {
     var currentScrollTop = document.getElementById('editor-wrapper').scrollTop;
-    console.log(currentScrollTop);
 
     scrollAnimation('up', 0, 200, currentScrollTop, 1);
+    cursorPosition.toTop();
   };
 
+  // Scroll to the bottom of the document
   exports.toBottom = function() {
     var currentScrollTop = document.getElementById('editor-wrapper').scrollTop
       , documentHeight = document.getElementById('editor').scrollHeight;
-    console.log(currentScrollTop, documentHeight);
 
     scrollAnimation('down', documentHeight, 200, currentScrollTop, 1);
+    cursorPosition.toBottom();
   };
 
+  // Scroll to a specific Y coordinate
   exports.toOffset = function(destination) {
     var currentScrollTop = document.getElementById('editor-wrapper').scrollTop;
 

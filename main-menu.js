@@ -103,7 +103,6 @@ MainMenu = function(mainWindow) {
           label: 'Scroll to top',
           accelerator: 'Ctrl+G',
           click: function() {
-            console.log('Scroll to top');
             mainWindow.webContents.send('scroll-to', 'top');
           }
         },
@@ -111,7 +110,6 @@ MainMenu = function(mainWindow) {
           label: 'Scroll to Bottom',
           accelerator: 'Ctrl+Shift+G',
           click: function() {
-            console.log('Scroll to bottom');
             mainWindow.webContents.send('scroll-to', 'bottom');
           }
         }
@@ -134,7 +132,7 @@ MainMenu = function(mainWindow) {
         },
         {
           label: 'Toggle DevTools',
-          accelerator: 'Alt+Ctrl+I',
+          accelerator: 'Shift+Ctrl+I',
           click: function() { mainWindow.toggleDevTools(); }
         },
       ]

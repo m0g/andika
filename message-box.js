@@ -2,7 +2,6 @@
   var dialog = require('dialog');
 
   exports.modified = function(callback) {
-    console.log('file has been modified');
     var messageBoxOptions = { 
       type: "warning",
       buttons: ['Save & continue', 'Cancel', 'Continue'],

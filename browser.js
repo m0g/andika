@@ -44,7 +44,6 @@ app.on('ready', function() {
     , confirmToClose = false;
 
   ipc.on('init-new-file', function() {
-    console.log('enable save');
     mainMenu.enableSave();
   });
 
