@@ -1,5 +1,7 @@
+var scrollDocument = require('./scroll-document');
+
 module.exports = function() {
-  var createPointer = function(position) {
+  var createPointer = function(position, elem) {
     var liElem = document.createElement('li')
       , divElem = document.createElement('div')
       , aElem = document.createElement('a');
@@ -18,7 +20,7 @@ module.exports = function() {
     liElem.appendChild(aElem);
 
     aElem.addEventListener('click', function() {
-      window.scroll(0, 3000);
+      scrollDocument.toOffset(elem.offsetTop);
     });
 
     return liElem;
@@ -33,7 +35,7 @@ module.exports = function() {
 
   for (var i = 0, chapter; chapter = chapters[i]; i++) {
     var position = parseInt(chapter.offsetTop / heightPercent);
-    pointers.push(createPointer(position));
+    pointers.push(createPointer(position, chapter));
   }
 
   for (var i = 0; i < pointers.length; ++i) {

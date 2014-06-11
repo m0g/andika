@@ -6,6 +6,7 @@
     , notify = require('./notify')
     , generateMap = require('./generate-map')
     , setCursorLine = require('./set-cursor-line')
+    , scrollDocument = require('./scroll-document')
     , FormatSelection = require('./format-selection');
 
   window.onload = function() {
@@ -109,6 +110,7 @@
     editor.addEventListener('keyup', generateMap);
     editor.addEventListener('click', generateMap);
 
+    // Sockets
     ipc.sendChannel('window-loaded', true);
 
     ipc.on('new-file', function(val) {
@@ -186,6 +188,13 @@
 
     ipc.on('redo', function() {
       document.execCommand('redo', false, null);
+    });
+
+    ipc.on('scroll-to', function(direction) {
+      if (direction == 'top')
+        scrollDocument.toTop();
+      else
+        scrollDocument.toBottom();
     });
   };
 })();

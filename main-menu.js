@@ -97,6 +97,27 @@ MainMenu = function(mainWindow) {
       ]
     },
     {
+      label: 'Selection',
+      submenu: [
+        {
+          label: 'Scroll to top',
+          accelerator: 'Ctrl+G',
+          click: function() {
+            console.log('Scroll to top');
+            mainWindow.webContents.send('scroll-to', 'top');
+          }
+        },
+        {
+          label: 'Scroll to Bottom',
+          accelerator: 'Ctrl+Shift+G',
+          click: function() {
+            console.log('Scroll to bottom');
+            mainWindow.webContents.send('scroll-to', 'bottom');
+          }
+        }
+      ]
+    },
+    {
       label: 'View',
       submenu: [
         {
@@ -122,14 +143,14 @@ MainMenu = function(mainWindow) {
       label: 'Format',
       submenu: [
         {
-          label: 'H1',
+          label: 'H1: Title',
           accelerator: 'Ctrl+1',
           click: function() {
             mainWindow.webContents.send('format-to-h1', true);
           }
         },
         {
-          label: 'H2',
+          label: 'H2: Chapter',
           accelerator: 'Ctrl+2',
           click: function() {
             mainWindow.webContents.send('format-to-h2', true);
