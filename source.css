@@ -104,7 +104,6 @@ h1 {
 }
 
 h2, h3 {
-  /*color: #3a636f;*/
   color: #33A7E4;
 }
 
@@ -316,6 +315,34 @@ div.fade.bottom {
 
 #editor .current-position {
   color: #111;
+}
+
+#editor h1.current-position {
+  background: #F43779;
+}
+
+#editor .current-position i,
+#editor .current-position em,
+#editor h2.current-position {
+  background: #33A7E4;
+}
+
+#editor .current-position strong {
+  background: #0AAF3F;
+}
+
+#editor .current-position a {
+  background: #FF5039;
+}
+
+#editor .current-position i,
+#editor .current-position em,
+#editor .current-position strong,
+#editor .current-position a,
+#editor h1.current-position,
+#editor h2.current-position {
+  color: #fff;
+  text-shadow: none;
 }
 
 ::-webkit-scrollbar {
