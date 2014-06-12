@@ -38,8 +38,8 @@ MainMenu = function(mainWindow) {
     else
       dialog.showSaveDialog({ title: 'new-file.md' }, function(res) {
         if (res) {
-          currentFile = res;
-          mainWindow.webContents.send('save-new-file', res);
+          currentFile = res.replace(/\.\w+$/g, '') + '.md'
+          mainWindow.webContents.send('save-new-file', currentFile);
         }
       });
   }
