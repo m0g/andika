@@ -18,6 +18,12 @@ Since I'm myself not much of a writer, I would like this application to have a c
 
 You can either download the latest version for your system [here](here) or build it yourself.
 
+## Running
+
+If you have atom-shell already installed. You just have to type 
+
+> atom /path-to/andika
+
 ## Building
 
 ...

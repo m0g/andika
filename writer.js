@@ -37,7 +37,7 @@ Writer.prototype.saveFile = function(filePath, newContent, callback) {
   newContent = toMarkdown(sanitizeHtml(
     newContent.decodeHTML(),
     { allowedTags: [ 'b', 'i', 'em', 'strong', 'p', 'ul', 'li',
-                     'h1', 'h2', 'h3', 'a' ] }
+                     'h1', 'h2', 'h3', 'a', 'blockquote' ] }
   ));
 
   fs.writeFile(filePath, newContent, function(err) {
