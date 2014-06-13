@@ -17,7 +17,7 @@ Since I'm myself not much of a writer, I would like this application to have a c
 
 ## Installing
 
-You can either download the latest version for your system (soon) or build it yourself.
+You can either download the latest version for your system [here](https://github.com/m0g/andika/releases/) or build it yourself.
 
 ## Running
 
