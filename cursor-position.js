@@ -23,6 +23,19 @@
     selection.addRange(range);
   };
 
+  exports.toElement = function(element) {
+    var range, selection
+      , contentEditableElement = document.getElementById('editor');
+
+    range = document.createRange();
+    range.selectNodeContents(element);
+    range.collapse(false);
+    selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  };
+
+
   // PRIVATE
   var getLastChildElement = function(el){
     var lc = el.lastChild;

@@ -1,4 +1,5 @@
-var scrollDocument = require('./scroll-document');
+var scrollDocument = require('./scroll-document')
+  , cursorPosition = require('./cursor-position');
 
 module.exports = function() {
   var createPointer = function(position, elem) {
@@ -21,6 +22,7 @@ module.exports = function() {
 
     aElem.addEventListener('click', function() {
       scrollDocument.toOffset(elem.offsetTop);
+      cursorPosition.toElement(elem);
     });
 
     return liElem;

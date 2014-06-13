@@ -61,19 +61,21 @@ app.on('ready', function() {
   });
 
   mainWindow.on('close', function(event) {
-    if (confirmToClose) event.preventDefault();
+    if (confirmToClose) {
+      event.preventDefault();
 
-    var currentWindow = mainWindow
-      , messageBoxOptions = { type: "warning",
-                              buttons: ['Save', 'Cancel', 'Quit'],
-                              message: "Are you sure you want to quit?" };
+      var currentWindow = mainWindow
+        , messageBoxOptions = { type: "warning",
+                                buttons: ['Save', 'Cancel', 'Quit'],
+                                message: "Are you sure you want to quit?" };
 
-    dialog.showMessageBox(messageBoxOptions, function(res) {
-      if (res == 2) {
-        confirmToClose = false;
-        mainWindow.close();
-      }
-    });
+      dialog.showMessageBox(messageBoxOptions, function(res) {
+        if (res == 2) {
+          confirmToClose = false;
+          mainWindow.close();
+        }
+      });
+    }
   });
 
   mainWindow.on('closed', function(event) {
