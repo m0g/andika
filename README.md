@@ -23,7 +23,10 @@ You can either download the latest version for your system (soon) or build it yo
 
 First you need to go to download and install Atom-shell, you can find it at this url: [https://github.com/atom/atom-shell/releases](https://github.com/atom/atom-shell/releases). Then you just have to type:
 
-> npm run bundle && atom /path-to/andika
+```
+npm run bundle && atom /path-to/andika
+```
+
 
 ## Building
 
