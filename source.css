@@ -47,7 +47,7 @@
   font-family: 'SourceSansPro';
   src: url('fonts/EOT/SourceSansPro-Regular.eot');
   src: local('☺'), 
-    url('fonts/WOFF/SourceSansPro-Regular.woff') format('woff'), 
+    url('fonts/WOFF/OTF/SourceSansPro-Regular.otf.woff') format('woff'), 
     url('fonts/TTF/SourceSansPro-Regular.ttf') format('truetype'), 
     url('fonts/SVG/SourceSansPro-Regular.svg') format('svg');
   font-weight: normal;
@@ -58,7 +58,7 @@
   font-family: 'SourceSansPro';
   src: url('fonts/EOT/SourceSansPro-Italic.eot');
   src: local('☺'), 
-    url('fonts/WOFF/SourceSansPro-Italic.woff') format('woff'), 
+    url('fonts/WOFF/OTF/SourceSansPro-Italic.otf.woff') format('woff'), 
     url('fonts/TTF/SourceSansPro-Italic.ttf') format('truetype'), 
     url('fonts/SVG/SourceSansPro-Italic.svg') format('svg');
   font-weight: normal;
@@ -70,7 +70,7 @@
   src: url('fonts/EOT/sourcesanspro-semibold-webfont.eot');
   src: local('☺'), 
     url('fonts/EOT/SourceSansPro-Semibold.eot?#iefix') format('embedded-opentype'),
-    url('fonts/WOFF/SourceSansPro-Semibold.woff') format('woff'), 
+    url('fonts/WOFF/OTF/SourceSansPro-Semibold.otf.woff') format('woff'), 
     url('fonts/TTF/SourceSansPro-Semibold.ttf') format('truetype'), 
     url('fonts/SVG/SourceSansPro-Semibold.svg') format('svg');
   font-weight: 600;
@@ -82,7 +82,7 @@
   src: url('fonts/EOT/SourceSansPro-Bold.eot');
   src: local('☺'), 
     url('fonts/EOT/SourceSansPro-Bold.eot?#iefix') format('embedded-opentype'),
-    url('fonts/WOFF/SourceSansPro-Bold.woff') format('woff'), 
+    url('fonts/WOFF/OTF/SourceSansPro-Bold.otf.woff') format('woff'), 
     url('fonts/TTF/SourceSansPro-Bold.ttf') format('truetype'), 
     url('fonts/SVG/SourceSansPro-Bold.svg') format('svg');
   font-weight: bold;
@@ -135,6 +135,7 @@ strong, b {
 u { color: #FF9439; }
 i, em { color: #33A7E4; }
 strike { color: #33A7E4; }
+img { width: 100%; }
 
 blockquote {
   padding: 0;

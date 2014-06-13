@@ -51,7 +51,7 @@
       if(!currentFile.path && this.innerHTML.length > 0) {
         ipc.sendChannel('init-new-file', true);
         currentFile.path = 'New file';
-        editor.removeEventListener('keyup', editorKeyUp);
+        editor.removeEventListener('keydown', editorKeyDown);
       }
     },
 

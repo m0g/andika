@@ -36,8 +36,8 @@ Writer.prototype.openFile = function(filePath, successCallback, errorCallback) {
 Writer.prototype.saveFile = function(filePath, newContent, callback) {
   newContent = toMarkdown(sanitizeHtml(
     newContent.decodeHTML(),
-    { allowedTags: [ 'b', 'i', 'em', 'strong', 'p', 'ul', 'li',
-                     'h1', 'h2', 'h3', 'a', 'blockquote' ] }
+    { allowedTags: [ 'b', 'i', 'em', 'strong', 'p', 'ul', 'li', 'img',
+                     'h1', 'h2', 'h3', 'a', 'blockquote', 'code' ] }
   ));
 
   fs.writeFile(filePath, newContent, function(err) {
