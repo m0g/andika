@@ -20,13 +20,15 @@ MainMenu = function(mainWindow) {
         if (res) {
           if (res[0].match(/\.md$|\.markdown$/i))
           currentFile = res[0];
+          mainMenu.currentFile = res[0];
 
           mainWindow.webContents.send('open-file', currentFile);
         }
       });
     };
 
-    if (mainMenu.confirmToClose) messageBox.modified(dialogBox);
+    if (mainMenu.confirmToClose) 
+      messageBox.modified(mainMenu, dialogBox);
     else dialogBox();
   },
 
@@ -188,6 +190,7 @@ MainMenu = function(mainWindow) {
 
   this.menu = Menu.buildFromTemplate(template);
   this.mainWindow.setMenu(this.menu);
+  this.currentFile = currentFile;
 
   var mainMenu = this;
 }
@@ -207,5 +210,24 @@ MainMenu.prototype.enableSave = function() {
 MainMenu.prototype.saveStatus = function() {
   return this.menu.items[0].submenu.items[1].enabled;
 };
+
+MainMenu.prototype.save = function(callback) {
+  console.log(this);
+  var mainMenu = this;
+  if (!mainMenu.saveStatus()) return false;
+
+  if (this.currentFile) {
+    this.mainWindow.webContents.send('save-current-file', true);
+    callback();
+  } else
+    dialog.showSaveDialog({ title: 'new-file.md' }, function(res) {
+      if (res) {
+        mainMenu.currentFile = res.replace(/\.\w+$/g, '') + '.md'
+        mainMenu.mainWindow.webContents.send('save-new-file', mainMenu.currentFile);
+        callback();
+      }
+    });
+}
+
 
 module.exports = MainMenu;

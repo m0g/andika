@@ -66,13 +66,18 @@ app.on('ready', function() {
 
       var currentWindow = mainWindow
         , messageBoxOptions = { type: "warning",
-                                buttons: ['Save', 'Cancel', 'Quit'],
+                                buttons: ['Save & Quit', 'Cancel', 'Quit'],
                                 message: "Are you sure you want to quit?" };
 
       dialog.showMessageBox(messageBoxOptions, function(res) {
         if (res == 2) {
           confirmToClose = false;
           mainWindow.close();
+        } else if (res == 0) {
+          mainMenu.save(function() {
+            confirmToClose = false;
+            mainWindow.close();
+          });
         }
       });
     }
