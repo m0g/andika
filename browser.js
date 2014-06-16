@@ -33,7 +33,9 @@ app.on('open-file', function(filePath) {
 // initialization and ready for creating browser windows.
 app.on('ready', function() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 1024, height: 700});
+  mainWindow = new BrowserWindow({
+    width: 1024, height: 700, icon: __dirname + '/static/andika-logo-250.png'
+  });
   //var css = npmcss('static/style.css');
 
   // and load the index.html of the app.
