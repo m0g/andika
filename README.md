@@ -16,6 +16,10 @@ This software is aimed at writers, journalists and students.
 
 Since I'm myself not much of a writer, I would like this application to have a community driven development. So anyone is welcomed to request features or to report bugs via the [Github issues thingy](https://github.com/m0g/andika/issues).
 
+## Keyboard shortcuts
+
+...
+
 ## Installing
 
 You can either download the latest version for your system [here](https://github.com/m0g/andika/releases/) or build it yourself.
