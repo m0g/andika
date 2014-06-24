@@ -1,19 +1,25 @@
 (function() {
+  var sanitizeHtml = require('sanitize-html');
+
   var FormatSelection = function() {
     this.selection = window.getSelection();
     this.range = this.selection.getRangeAt(0);
   };
 
   FormatSelection.prototype.toTag = function(tag) {
+    if (['H1', 'H2', 'H3'].indexOf(this.range.startContainer.parentNode.tagName) != -1)
+      return false;
+
     this.heading = document.createElement(tag);
 
-    if (this.selection.toString().length > 0)
+    if (this.selection.toString().length > 0) {
       this.heading.innerText = this.selection.toString();
-    else {
+    } else {
       this.heading.innerText = this.range.startContainer.parentNode.innerText;
       this.range.startContainer.parentNode.innerText = '';
     }
 
+    console.log(this.range.startContainer.parentNode.tagName);
     this.range.deleteContents();
     this.range.insertNode(this.heading);
   };
