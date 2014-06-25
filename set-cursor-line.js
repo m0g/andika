@@ -17,7 +17,8 @@ module.exports = function() {
     return (isLine > -1) ? node : getLineElement(node.parentNode);
   }
 
-  var childElements = document.querySelectorAll('.current-position');
+  //var childElements = document.querySelectorAll('.current-position');
+  var childElements = document.getElementById('editor').querySelectorAll('*');
 
   for (var i = 0, childElement; childElement = childElements[i]; i++) {
     childElement.className = '';

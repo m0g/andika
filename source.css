@@ -376,3 +376,7 @@ i.medium-editor-toolbar-anchor-preview-inner,
 .medium-editor-toolbar li button b {
   color: #fff;
 }
+
+.medium-editor-placeholder:after {
+  position: relative;
+}
