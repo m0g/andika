@@ -7,6 +7,7 @@
   };
 
   FormatSelection.prototype.toTag = function(tag) {
+    // TODO: Format should be reverted instead of cancelled
     if (['H1', 'H2', 'H3'].indexOf(this.range.startContainer.parentNode.tagName) != -1)
       return false;
 
@@ -19,9 +20,15 @@
       this.range.startContainer.parentNode.innerText = '';
     }
 
-    console.log(this.range.startContainer.parentNode.tagName);
-    this.range.deleteContents();
-    this.range.insertNode(this.heading);
+    if (this.range.startContainer.parentNode.tagName == 'P') {
+      var node = this.range.startContainer.parentNode.parentNode;
+      //while (node.firstChild) { node.removeChild(node.firstChild); }
+      this.range.deleteContents();
+      node.appendChild(this.heading);
+    } else {
+      this.range.deleteContents();
+      this.range.insertNode(this.heading);
+    }
   };
 
   FormatSelection.prototype.toH1 = function() {
