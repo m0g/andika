@@ -182,6 +182,18 @@
       document.execCommand('italic', false, null);
     });
 
+    ipc.on('cut', function() {
+      document.execCommand('cut', false, null);
+    });
+
+    ipc.on('copy', function() {
+      document.execCommand('copy', false, null);
+    });
+
+    ipc.on('paste', function() {
+      document.execCommand('paste', false, null);
+    });
+
     ipc.on('undo', function() {
       document.execCommand('undo', false, null);
     });

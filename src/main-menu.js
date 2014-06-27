@@ -82,6 +82,8 @@ MainMenu = function(mainWindow) {
           accelerator: 'Command+Q',
           click: function() { app.quit(); }
         }],
+    },
+    {
       label: 'File',
       submenu: [{
         label: 'New',
@@ -99,17 +101,36 @@ MainMenu = function(mainWindow) {
           enabled: false,
           accelerator: 'Command+S',
           click: save
-        },
-        {
-          label: 'Close',
-          accelerator: 'Command+W',
-          click: function() {
-            mainWindow.close();
-          }
         }],
+    },
+    {
       label: 'Edit',
       submenu: [{
-        label: 'Undo',
+          label: 'Cut',
+          accelerator: 'Command+X',
+          click: function() {
+            mainWindow.webContents.send('cut', true);
+          }
+        },
+        {
+          label: 'Copy',
+          accelerator: 'Command+C',
+          click: function() {
+            mainWindow.webContents.send('copy', true);
+          }
+        },
+        {
+          label: 'Paste',
+          accelerator: 'Command+V',
+          click: function() {
+            mainWindow.webContents.send('paste', true);
+          }
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Undo',
           accelerator: 'Command+Z',
           click: function() {
             mainWindow.webContents.send('undo', true);
@@ -122,6 +143,8 @@ MainMenu = function(mainWindow) {
             mainWindow.webContents.send('redo', true);
           }
         }],
+    },
+    {
       label: 'View',
       submenu: [{
           label: 'Reload',
@@ -137,6 +160,8 @@ MainMenu = function(mainWindow) {
           accelerator: 'Alt+Command+I',
           click: function() { mainWindow.toggleDevTools(); }
         }],
+    },
+    {
       label: 'Selection',
       submenu: [{
           label: 'Scroll to top',
@@ -152,6 +177,8 @@ MainMenu = function(mainWindow) {
             mainWindow.webContents.send('scroll-to', 'bottom');
           }
         }],
+    },
+    {
       label: 'Format',
       submenu: [{
           label: 'H1: Title',
@@ -223,7 +250,7 @@ MainMenu = function(mainWindow) {
           },
           {
             label: 'Close',
-            accelerator: 'Ctrl+W',
+            accelerator: 'Ctrl+Q',
             click: function() {
               mainWindow.close();
             }
@@ -233,6 +260,30 @@ MainMenu = function(mainWindow) {
       {
         label: 'Edit',
         submenu: [
+          {
+            label: 'Cut',
+            accelerator: 'Ctrl+X',
+            click: function() {
+              mainWindow.webContents.send('cut', true);
+            }
+          },
+          {
+            label: 'Copy',
+            accelerator: 'Ctrl+C',
+            click: function() {
+              mainWindow.webContents.send('copy', true);
+            }
+          },
+          {
+            label: 'Paste',
+            accelerator: 'Ctrl+V',
+            click: function() {
+              mainWindow.webContents.send('paste', true);
+            }
+          },
+          {
+            type: 'separator'
+          },
           {
             label: 'Undo',
             accelerator: 'Ctrl+Z',
@@ -361,12 +412,13 @@ MainMenu.prototype.openFileClick = function() {
 };
 
 MainMenu.prototype.enableSave = function() {
-  this.menu.items[0].submenu.items[1].enabled = true;
-
-  if (process.platform == 'darwin')
+  if (process.platform == 'darwin') {
+    this.menu.items[1].submenu.items[2].enabled = true;
     Menu.setApplicationMenu(this.menu);
-  else
+  } else {
+    this.menu.items[0].submenu.items[2].enabled = true;
     this.mainWindow.setMenu(this.menu);
+  }
 }
 
 MainMenu.prototype.saveStatus = function() {

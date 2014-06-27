@@ -22,7 +22,6 @@
 
     if (this.range.startContainer.parentNode.tagName == 'P') {
       var node = this.range.startContainer.parentNode.parentNode;
-      //while (node.firstChild) { node.removeChild(node.firstChild); }
       this.range.deleteContents();
       node.appendChild(this.heading);
     } else {

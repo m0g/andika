@@ -7,10 +7,6 @@ var app = require('app')
   , open = require('open')
   , dialog = require('dialog');
 
-//var npmcss = require('npm-css');
-//var rework = require('rework'),
-//    reworkNPM = require('rework-npm');
-
 // Report crashes to our server.
 require('crash-reporter').start();
 
@@ -21,8 +17,7 @@ var mainWindow = null;
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
-  if (process.platform != 'darwin')
-    app.quit();
+  app.quit();
 });
 
 app.on('open-file', function(filePath) {
@@ -36,7 +31,6 @@ app.on('ready', function() {
   mainWindow = new BrowserWindow({
     width: 1024, height: 700, icon: __dirname + '/static/andika-logo-250.png'
   });
-  //var css = npmcss('static/style.css');
 
   // and load the index.html of the app.
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
