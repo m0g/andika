@@ -59,6 +59,7 @@ module.exports = function() {
   for (var i = 0, childElement; childElement = childElements[i]; i++) {
     childElement.className = '';
     childElement.removeAttribute('style');
+    childElement.removeAttribute('color');
   }
 
   var lineElements = ['div', 'li', 'p', 'h1', 'h2', 'h3']

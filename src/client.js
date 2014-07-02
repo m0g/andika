@@ -182,6 +182,11 @@
       document.execCommand('italic', false, null);
     });
 
+    ipc.on('format-to-list', function() {
+      console.log('format to list');
+      document.execCommand('insertunorderedlist', false, null);
+    });
+
     ipc.on('cut', function() {
       document.execCommand('cut', false, null);
     });

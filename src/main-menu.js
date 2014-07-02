@@ -224,6 +224,13 @@ MainMenu = function(mainWindow) {
           click: function() {
             mainWindow.webContents.send('format-to-link', true);
           }
+        },
+        {
+          label: 'Unordered list',
+          accelerator: 'Command+L',
+          click: function() {
+            mainWindow.webContents.send('format-to-list', true);
+          }
         }]
     }];
   else
@@ -380,6 +387,13 @@ MainMenu = function(mainWindow) {
             accelerator: 'Ctrl+I',
             click: function() {
               mainWindow.webContents.send('format-to-italic', true);
+            }
+          },
+          {
+            label: 'Unordered list',
+            accelerator: 'Ctrl+L',
+            click: function() {
+              mainWindow.webContents.send('format-to-list', true);
             }
           },
           {
