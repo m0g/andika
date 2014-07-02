@@ -11,25 +11,6 @@
     if (['H1', 'H2', 'H3'].indexOf(this.range.startContainer.parentNode.tagName) != -1)
       return false;
 
-    //this.heading = document.createElement(tag);
-
-    //if (this.selection.toString().length > 0) {
-    //  this.heading.innerText = this.selection.toString();
-    //} else {
-    //  this.heading.innerText = this.range.startContainer.parentNode.innerText;
-    //  this.range.startContainer.parentNode.innerText = '';
-    //}
-
-    //if (this.range.startContainer.parentNode.tagName == 'P') {
-    //  var node = this.range.startContainer.parentNode.parentNode;
-    //  this.range.deleteContents();
-    //  node.appendChild(this.heading);
-    //} else {
-    //  console.log(this.heading.innerHTML);
-    //  document.execCommand('insertHTML', false,
-    //                       '<'+tag+'>'+this.heading.innerText+'</'+tag+'>');
-    //}
-
     if (this.selection.toString().length > 0) {
       document.execCommand('insertHTML', false,
                            '<'+tag+'>'+this.selection.toString()+'</'+tag+'>');
@@ -69,6 +50,15 @@
     this.link.innerText = this.selection.toString();
     this.range.deleteContents();
     this.range.insertNode(this.link);
+  };
+
+  FormatSelection.prototype.to = function(tag) {
+    if (['H1', 'H2', 'H3'].indexOf(tag.toUpperCase()) != -1)
+      this.toTag(tag);
+    else if (['bold', 'italic'].indexOf(tag) != -1)
+      document.execCommand(tag, false, null);
+    else if (tag == 'ul')
+      document.execCommand('insertunorderedlist', false, null);
   };
 
   module.exports = FormatSelection;

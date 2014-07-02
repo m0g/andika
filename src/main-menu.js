@@ -44,7 +44,31 @@ MainMenu = function(mainWindow) {
           mainWindow.webContents.send('save-new-file', currentFile);
         }
       });
-  }
+  },
+
+  formatToH1 = function() {
+    mainWindow.webContents.send('format-to', 'h1');
+  },
+
+  formatToH2 = function() {
+    mainWindow.webContents.send('format-to', 'h2');
+  },
+
+  formatToH3 = function() {
+    mainWindow.webContents.send('format-to', 'h3');
+  },
+
+  formatToBold = function() {
+    mainWindow.webContents.send('format-to', 'bold');
+  },
+
+  formatToItalic = function() {
+    mainWindow.webContents.send('format-to', 'italic');
+  },
+
+  formatToList = function() {
+    mainWindow.webContents.send('format-to', 'ul');
+  };
 
   this.confirmToClose = false;
   this.mainWindow = mainWindow;
@@ -183,23 +207,17 @@ MainMenu = function(mainWindow) {
       submenu: [{
           label: 'H1: Title',
           accelerator: 'Command+1',
-          click: function() {
-            mainWindow.webContents.send('format-to-h1', true);
-          }
+          click: formatToH1
         },
         {
           label: 'H2: Chapter',
           accelerator: 'Command+2',
-          click: function() {
-            mainWindow.webContents.send('format-to-h2', true);
-          }
+          click: formatToH2
         },
         {
           label: 'H3',
           accelerator: 'Command+3',
-          click: function() {
-            mainWindow.webContents.send('format-to-h3', true);
-          }
+          click: formatToH3
         },
         {
           type: 'separator'
@@ -207,30 +225,17 @@ MainMenu = function(mainWindow) {
         {
           label: 'Bold',
           accelerator: 'Command+B',
-          click: function() {
-            mainWindow.webContents.send('format-to-bold', true);
-          }
+          click: formatToBold
         },
         {
           label: 'Italic',
           accelerator: 'Command+I',
-          click: function() {
-            mainWindow.webContents.send('format-to-italic', true);
-          }
-        },
-        {
-          label: 'Link',
-          accelerator: 'Command+K',
-          click: function() {
-            mainWindow.webContents.send('format-to-link', true);
-          }
+          click: formatToItalic
         },
         {
           label: 'Unordered list',
           accelerator: 'Command+L',
-          click: function() {
-            mainWindow.webContents.send('format-to-list', true);
-          }
+          click: formatToList
         }]
     }];
   else
@@ -354,23 +359,17 @@ MainMenu = function(mainWindow) {
           {
             label: 'H1: Title',
             accelerator: 'Ctrl+1',
-            click: function() {
-              mainWindow.webContents.send('format-to-h1', true);
-            }
+            click: formatToH1
           },
           {
             label: 'H2: Chapter',
             accelerator: 'Ctrl+2',
-            click: function() {
-              mainWindow.webContents.send('format-to-h2', true);
-            }
+            click: formatToH2
           },
           {
             label: 'H3',
             accelerator: 'Ctrl+3',
-            click: function() {
-              mainWindow.webContents.send('format-to-h3', true);
-            }
+            click: formatToH3
           },
           {
             type: 'separator'
@@ -378,23 +377,17 @@ MainMenu = function(mainWindow) {
           {
             label: 'Bold',
             accelerator: 'Ctrl+B',
-            click: function() {
-              mainWindow.webContents.send('format-to-bold', true);
-            }
+            click: formatToBold
           },
           {
             label: 'Italic',
             accelerator: 'Ctrl+I',
-            click: function() {
-              mainWindow.webContents.send('format-to-italic', true);
-            }
+            click: formatToItalic
           },
           {
             label: 'Unordered list',
             accelerator: 'Ctrl+L',
-            click: function() {
-              mainWindow.webContents.send('format-to-list', true);
-            }
+            click: formatToList
           },
           {
             label: 'Link',

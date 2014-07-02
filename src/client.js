@@ -154,37 +154,9 @@
       });
     });
 
-    ipc.on('format-to-h1', function() {
+    ipc.on('format-to', function(tag) {
       var formatSelection = new FormatSelection();
-      formatSelection.toH1();
-    });
-
-    ipc.on('format-to-h2', function() {
-      var formatSelection = new FormatSelection();
-      formatSelection.toH2();
-    });
-
-    ipc.on('format-to-h3', function() {
-      var formatSelection = new FormatSelection();
-      formatSelection.toH3();
-    });
-
-    ipc.on('format-to-link', function() {
-      var formatSelection = new FormatSelection();
-      formatSelection.toLink();
-    });
-
-    ipc.on('format-to-bold', function() {
-      document.execCommand('bold', false, null);
-    });
-
-    ipc.on('format-to-italic', function() {
-      document.execCommand('italic', false, null);
-    });
-
-    ipc.on('format-to-list', function() {
-      console.log('format to list');
-      document.execCommand('insertunorderedlist', false, null);
+      formatSelection.to(tag);
     });
 
     ipc.on('cut', function() {
