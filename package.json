@@ -18,6 +18,8 @@
   "devDependencies": {
     "clean-css": "~2.1.8",
     "rework-npm-cli": "~0.1.1",
+    "request": "*",
+    "pace": "*",
     "myth": "~1.0.4"
   }
 }

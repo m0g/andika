@@ -19,10 +19,14 @@
       this.heading.innerText = this.range.startContainer.parentNode.innerText;
 
       if (this.range.startContainer.parentNode.tagName == 'P') {
-        var node = this.range.startContainer.parentNode.parentNode;
+        var node = this.range.startContainer.parentNode;
         this.range.deleteContents();
-        node.appendChild(this.heading);
-        // TODO: Cursor should be move at the end of the heading
+
+        if (node.nextSibling)
+          node.parentNode.insertBefore(this.heading, node.nextSibling);
+        else node.parentNode.appendChild(this.heading);
+
+        // TODO: Cursor should be moved at the end of the heading
       } else {
         this.range.deleteContents();
         this.range.insertNode(this.heading);
@@ -59,6 +63,8 @@
       document.execCommand(tag, false, null);
     else if (tag == 'ul')
       document.execCommand('insertunorderedlist', false, null);
+    else if (tag == 'link')
+      this.toLink();
   };
 
   module.exports = FormatSelection;

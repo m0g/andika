@@ -68,6 +68,10 @@ MainMenu = function(mainWindow) {
 
   formatToList = function() {
     mainWindow.webContents.send('format-to', 'ul');
+  },
+
+  formatToLink = function() {
+    mainWindow.webContents.send('format-to', 'link');
   };
 
   this.confirmToClose = false;
@@ -236,6 +240,11 @@ MainMenu = function(mainWindow) {
           label: 'Unordered list',
           accelerator: 'Command+L',
           click: formatToList
+        },
+        {
+          label: 'Link',
+          accelerator: 'Command+K',
+          click: formatToLink
         }]
     }];
   else
@@ -392,9 +401,7 @@ MainMenu = function(mainWindow) {
           {
             label: 'Link',
             accelerator: 'Ctrl+K',
-            click: function() {
-              mainWindow.webContents.send('format-to-link', true);
-            }
+            click: formatToLink
           }
         ]
       }
