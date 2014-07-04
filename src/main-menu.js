@@ -46,6 +46,10 @@ MainMenu = function(mainWindow) {
       });
   },
 
+  exportToPDF = function() {
+    mainWindow.webContents.send('export-to-pdf', true);
+  },
+
   formatToH1 = function() {
     mainWindow.webContents.send('format-to', 'h1');
   },
@@ -270,6 +274,14 @@ MainMenu = function(mainWindow) {
             click: save
           },
           {
+            type: 'separator'
+          },
+          {
+            label: 'Export to PDF',
+            accelerator: 'Shift+Ctrl+E',
+            click: exportToPDF
+          },
+           {
             label: 'Close',
             accelerator: 'Ctrl+Q',
             click: function() {

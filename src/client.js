@@ -4,6 +4,7 @@
     , ipc = require('ipc')
     , Writer = require('./writer')
     , notify = require('./notify')
+    , exportation = require('./exportation')
     , generateMap = require('./generate-map')
     , setCursorLine = require('./set-cursor-line')
     , scrollDocument = require('./scroll-document')
@@ -177,6 +178,10 @@
 
     ipc.on('redo', function() {
       document.execCommand('redo', false, null);
+    });
+
+    ipc.on('export-to-pdf', function() {
+      exportation.toPDF();
     });
 
     ipc.on('scroll-to', function(direction) {

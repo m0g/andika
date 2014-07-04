@@ -8,6 +8,8 @@ Instead of being yet another markdown editor, andika uses markdown as a file sto
 
 This software is aimed at writers, journalists and students.
 
+You can contact me on twitter at [@m0g89](https://twitter.com/m0g89)
+
 ## Features
 
 ...

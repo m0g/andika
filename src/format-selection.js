@@ -1,5 +1,6 @@
 (function() {
-  var sanitizeHtml = require('sanitize-html');
+  var sanitizeHtml = require('sanitize-html')
+    , cursorPosition = require('./cursor-position');
 
   var FormatSelection = function() {
     this.selection = window.getSelection();
@@ -17,22 +18,24 @@
     } else {
       this.heading = document.createElement(tag);
       this.heading.innerText = this.range.startContainer.parentNode.innerText;
+      var node = this.range.startContainer.parentNode;
 
       if (this.range.startContainer.parentNode.tagName == 'P') {
-        var node = this.range.startContainer.parentNode;
         this.range.deleteContents();
 
         if (node.nextSibling)
           node.parentNode.insertBefore(this.heading, node.nextSibling);
         else node.parentNode.appendChild(this.heading);
 
+        this.range.startContainer.parentNode.innerText = '';
         // TODO: Cursor should be moved at the end of the heading
       } else {
-        this.range.deleteContents();
+        //this.range.deleteContents();
+        node.parentNode.removeChild(node);
         this.range.insertNode(this.heading);
       }
 
-      this.range.startContainer.parentNode.innerText = '';
+      cursorPosition.toElement(this.heading);
     }
   };
 
@@ -56,13 +59,27 @@
     this.range.insertNode(this.link);
   };
 
+  FormatSelection.prototype.toList = function() {
+    document.execCommand('insertunorderedlist', false, null);
+
+    var node = this.range.startContainer;
+    var list = node.getElementsByTagName('UL')[0];
+
+    if (node.nextSibling)
+      node.parentNode.insertBefore(list, node.nextSibling);
+    else node.parentNode.appendChild(list);
+
+    node.parentNode.removeChild(node);
+    cursorPosition.toElement(list);
+  };
+
   FormatSelection.prototype.to = function(tag) {
     if (['H1', 'H2', 'H3'].indexOf(tag.toUpperCase()) != -1)
       this.toTag(tag);
     else if (['bold', 'italic'].indexOf(tag) != -1)
       document.execCommand(tag, false, null);
     else if (tag == 'ul')
-      document.execCommand('insertunorderedlist', false, null);
+      this.toList();
     else if (tag == 'link')
       this.toLink();
   };
