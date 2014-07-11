@@ -9,9 +9,12 @@ MainMenu = function(mainWindow) {
     if (mainMenu.confirmToClose)
       messageBox.modified(mainMenu, function() {
         mainWindow.webContents.send('new-file', true);
+        currentFile = '';
       });
-    else
+    else {
       mainWindow.webContents.send('new-file', true);
+      currentFile = '';
+    }
   },
 
   openFileClick = function(res) {
@@ -34,6 +37,8 @@ MainMenu = function(mainWindow) {
 
   save = function() {
     if (!mainMenu.saveStatus()) return false;
+
+    console.log(currentFile);
 
     if (currentFile)
       mainWindow.webContents.send('save-current-file', true);
