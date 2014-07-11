@@ -7,7 +7,7 @@ MainMenu = function(mainWindow) {
 
   newFileClick = function(res) {
     if (mainMenu.confirmToClose)
-      messageBox.modified(function() {
+      messageBox.modified(mainMenu, function() {
         mainWindow.webContents.send('new-file', true);
       });
     else
@@ -276,11 +276,11 @@ MainMenu = function(mainWindow) {
           {
             type: 'separator'
           },
-          {
-            label: 'Export to PDF',
-            accelerator: 'Shift+Ctrl+E',
-            click: exportToPDF
-          },
+          //{
+          //  label: 'Export to PDF',
+          //  accelerator: 'Shift+Ctrl+E',
+          //  click: exportToPDF
+          //},
            {
             label: 'Close',
             accelerator: 'Ctrl+Q',
