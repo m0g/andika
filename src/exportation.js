@@ -1,19 +1,18 @@
 (function() {
-  exports.toPDF = function() {
-    var JsPDF = require('./jspdf/jspdf');
+  exports.toPDF = function(path) {
+    var JsPDF = require('./jspdf');
     var fs = require('fs')
     var pdf = new JsPDF();
 
-    pdf.text(20, 20, 'Hello world.');
-    pdf.output('save', '/tmp/test.pdf', function(blob) {
-      console.log(blob);
+    pdf.fromHTML(document.getElementById('editor'), 15, 15, {
+      'width': 170
+    });
 
-      fs.createReadStream(blob).pipe(fs.createWriteStream("/tmp/test.pdf"))
+    var data64 = pdf.output('base64');
 
-      //fs.writeFile('/tmp/test.pdf', blob, function(err) {
-      //  if(err) console.log(err);
-      //  console.log('done');
-      //});
+    fs.writeFile(path, data64, 'base64', function(err) {
+      if(err) console.log(err);
+      console.log('done');
     });
   }
 })();

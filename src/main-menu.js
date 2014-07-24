@@ -45,14 +45,17 @@ MainMenu = function(mainWindow) {
     else
       dialog.showSaveDialog({ title: 'new-file.md' }, function(res) {
         if (res) {
-          currentFile = res.replace(/\.\w+$/g, '') + '.md'
+          currentFile = res.replace(/\.\w+$/g, '') + '.md';
           mainWindow.webContents.send('save-new-file', currentFile);
         }
       });
   },
 
   exportToPDF = function() {
-    mainWindow.webContents.send('export-to-pdf', true);
+    dialog.showSaveDialog({ title: 'Export to PDF' }, function(res) {
+      path = res.replace(/\.\w+$/g, '') + '.pdf';
+      mainWindow.webContents.send('export-to-pdf', path);
+    });
   },
 
   formatToH1 = function() {
@@ -138,6 +141,14 @@ MainMenu = function(mainWindow) {
           enabled: false,
           accelerator: 'Command+S',
           click: save
+        },
+        {
+          type: 'separator'
+        },
+        {
+          label: 'Export to PDF',
+          accelerator: 'Shift+Command+E',
+          click: exportToPDF
         }],
     },
     {
@@ -281,12 +292,15 @@ MainMenu = function(mainWindow) {
           {
             type: 'separator'
           },
-          //{
-          //  label: 'Export to PDF',
-          //  accelerator: 'Shift+Ctrl+E',
-          //  click: exportToPDF
-          //},
-           {
+          {
+            label: 'Export to PDF',
+            accelerator: 'Shift+Ctrl+E',
+            click: exportToPDF
+          },
+          {
+            type: 'separator'
+          },
+          {
             label: 'Close',
             accelerator: 'Ctrl+Q',
             click: function() {

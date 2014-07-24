@@ -1,6 +1,5 @@
 (function() {
   var fs = require('fs')
-    //, MediumEditor = require('medium-editor')
     , MediumEditor = require('./medium-editor')
     , ipc = require('ipc')
     , Writer = require('./writer')
@@ -18,25 +17,6 @@
       , editor = document.getElementById('editor')
       , charCounterVal = document.getElementById('char-counter-value')
       , wordCounterVal = document.getElementById('word-counter-value');
-
-    // Override default anchor preview behavior
-    // TODO: Add an edit button after the link
-    //MediumEditor.prototype.createAnchorPreview = function() {
-    //  var self = this,
-    //      anchorPreview = document.createElement('div');
-
-    //  anchorPreview.id = 'medium-editor-anchor-preview-' + this.id;
-    //  anchorPreview.className = 'medium-editor-anchor-preview';
-    //  anchorPreview.innerHTML = this.anchorPreviewTemplate();
-    //  this.options.elementsContainer.appendChild(anchorPreview);
-
-    //  anchorPreview.addEventListener('click', function () {
-    //    ipc.sendChannel('open-anchor',
-    //                    anchorPreview.querySelector('i').textContent);
-    //  });
-
-    //  return anchorPreview;
-    //}
 
     var mediumEditor = new MediumEditor('#editor', {
       placeholder: '',
@@ -181,8 +161,8 @@
       document.execCommand('redo', false, null);
     });
 
-    ipc.on('export-to-pdf', function() {
-      exportation.toPDF();
+    ipc.on('export-to-pdf', function(path) {
+      exportation.toPDF(path);
     });
 
     ipc.on('scroll-to', function(direction) {
