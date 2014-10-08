@@ -27,6 +27,8 @@ module.exports = function(title, editor, currentFile, writer, generateMap,
 
       generateMap();
       charAndWordCounter();
+
+      document.getElementById('home').remove();
     }, function() {
       notify('Error: file is not a valid .md or .markdown file', true);
     });

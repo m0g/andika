@@ -12,6 +12,7 @@
       , currentFile = { name: '', path: '', modified: false }
       , title = document.getElementsByTagName('title')[0]
       , editor = document.getElementById('editor')
+      , home = document.getElementById('home')
       , charCounterVal = document.getElementById('char-counter-value')
       , wordCounterVal = document.getElementById('word-counter-value');
 
@@ -35,6 +36,8 @@
         currentFile.path = 'New file';
         editor.removeEventListener('keydown', editorKeyDown);
       }
+
+      home.remove();
     },
 
     charAndWordCounter = function() {
