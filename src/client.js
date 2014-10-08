@@ -21,22 +21,6 @@
 
     // Override default anchor preview behavior
     // TODO: Add an edit button after the link
-    //MediumEditor.prototype.createAnchorPreview = function() {
-    //  var self = this,
-    //      anchorPreview = document.createElement('div');
-
-    //  anchorPreview.id = 'medium-editor-anchor-preview-' + this.id;
-    //  anchorPreview.className = 'medium-editor-anchor-preview';
-    //  anchorPreview.innerHTML = this.anchorPreviewTemplate();
-    //  this.options.elementsContainer.appendChild(anchorPreview);
-
-    //  anchorPreview.addEventListener('click', function () {
-    //    ipc.sendChannel('open-anchor',
-    //                    anchorPreview.querySelector('i').textContent);
-    //  });
-
-    //  return anchorPreview;
-    //}
 
     var mediumEditor = new MediumEditor('#editor', {
       placeholder: '',
@@ -58,8 +42,10 @@
     },
 
     charAndWordCounter = function() {
-      charCounterVal.innerText = editor.innerText.length;
-      wordCounterVal.innerText = editor.innerText.split(/\s+/).length;
+      var innerText = editor.innerText.trim();
+
+      charCounterVal.innerText = innerText.length;
+      wordCounterVal.innerText = innerText.length ? innerText.split(/\s+/).length : 0;
 
       if(writer.nbChars == 0)
         writer.nbChars = editor.innerText.length;
