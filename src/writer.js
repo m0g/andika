@@ -1,3 +1,5 @@
+'use strict';
+
 var fs = require('fs')
   , markdown = require( "markdown" ).markdown
   , toMarkdown = require('to-markdown').toMarkdown
@@ -15,7 +17,7 @@ String.prototype.decodeHTML = function() {
   });
 };
 
-Writer = function() {
+var Writer = function() {
   this.lastSaved = '';
   this.nbChars = 0;
 };

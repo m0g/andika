@@ -1,3 +1,5 @@
+'use strict';
+
 //module.exports = function(text) {
 module.exports = function() {
   var text = arguments[0];

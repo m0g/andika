@@ -1,3 +1,5 @@
+'use strict';
+
 var app = require('app')
   , Menu = require('menu')
   , MenuItem = require('menu-item')

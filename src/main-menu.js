@@ -1,8 +1,10 @@
+'use strict';
+
 var Menu = require('menu')
   , messageBox = require('./message-box')
   , dialog = require('dialog');
 
-MainMenu = function(mainWindow) {
+var MainMenu = function(mainWindow) {
   var currentFile = '',
 
   newFileClick = function(res) {
@@ -37,8 +39,6 @@ MainMenu = function(mainWindow) {
 
   save = function() {
     if (!mainMenu.saveStatus()) return false;
-
-    console.log(currentFile);
 
     if (currentFile)
       mainWindow.webContents.send('save-current-file', true);

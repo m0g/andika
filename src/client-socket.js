@@ -1,3 +1,5 @@
+'use strict';
+
 var ipc = require('ipc')
   , notify = require('./notify')
   , exportation = require('./exportation')

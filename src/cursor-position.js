@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
   exports.toTop = function() {
     var range, selection

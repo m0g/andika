@@ -1,3 +1,5 @@
+'use strict';
+
 var scrollDocument = require('./scroll-document')
   , cursorPosition = require('./cursor-position');
 

@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
   var cursorPosition = require('./cursor-position');
 

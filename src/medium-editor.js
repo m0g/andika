@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
   var MediumEditor = require('medium-editor')
     , ipc = require('ipc')

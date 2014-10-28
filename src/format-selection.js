@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
   var sanitizeHtml = require('sanitize-html')
     , cursorPosition = require('./cursor-position');

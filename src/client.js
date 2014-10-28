@@ -1,3 +1,5 @@
+'use strict';
+
 (function() {
   var fs = require('fs')
     , MediumEditor = require('./medium-editor')

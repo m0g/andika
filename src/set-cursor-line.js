@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = function() {
   var getSelectedNode = function() {
     //if (document.selection)
@@ -9,6 +11,16 @@ module.exports = function() {
     //}
   },
 
+  getLastChildTextNode = function(childNodes) {
+    var childTextNodes = [];
+
+    for (var i=0; i<childNodes.length; i++)
+      if (childNodes[i].nodeType == 3)
+        childTextNodes.push(childNodes[i]);
+
+    return childTextNodes.pop();
+  },
+
   getCurrentSentence = function(node) {
     var span = document.createElement('span');
     var charPos = window.getSelection().getRangeAt(0).startOffset;
@@ -17,7 +29,8 @@ module.exports = function() {
     var sentencesNbChar = 0;
     var range = document.createRange();
 
-    console.log(window.getSelection().getRangeAt(0).startContainer.parentNode);
+    //console.log(window.getSelection().getRangeAt(0).startContainer.parentNode);
+    //console.log(sentences);
 
     if (sentences.length > 1) {
       sentences.forEach(function(sentence) {
@@ -25,11 +38,17 @@ module.exports = function() {
                               end: sentencesNbChar + sentence.length };
         sentencesNbChar = sentencesNbChar + sentence.length;
 
-        //console.log(charPos, sentenceRange, node.childNodes);
-        if (sentenceRange.end - sentenceRange.start > 1 
+        if (sentenceRange.end - sentenceRange.start > 1
+          && sentenceRange.start > 0
           && charPos <= sentenceRange.end && charPos >= sentenceRange.start) {
-          range.setStart(node.firstChild, sentenceRange.start);
-          range.setEnd(node.firstChild, sentenceRange.end);
+
+          var lastChild = getLastChildTextNode(node.childNodes);
+          console.log(sentenceRange, charPos, node, lastChild);
+
+          //range.setStart(lastChild, sentenceRange.start);
+          range.setStart(lastChild, 0);
+          //range.setEnd(lastChild, (sentenceRange.end - sentenceRange.start));
+          range.setEnd(lastChild, lastChild.length);
           range.surroundContents(span);
           range.deleteContents();
           node.appendChild(span);
@@ -44,12 +63,12 @@ module.exports = function() {
   },
 
   getLineElement = function(node) {
-      var isLine = lineElements.indexOf(
-        node.tagName.toLowerCase()
-      );
+    var isLine = lineElements.indexOf(
+      node.tagName.toLowerCase()
+    );
 
-    //if (node.tagName.toLowerCase() == 'p')
-    //  getCurrentSentence(node);
+    if (node.tagName.toLowerCase() == 'p')
+      return getCurrentSentence(node);
 
     return (isLine > -1) ? node : getLineElement(node.parentNode);
   }
@@ -65,5 +84,6 @@ module.exports = function() {
   var lineElements = ['div', 'li', 'p', 'h1', 'h2', 'h3']
     , selectedNode = getSelectedNode();
 
-  getLineElement(selectedNode).className = 'current-position';
+  var currentNode = getLineElement(selectedNode).className = 'current-position';
+  console.log(currentNode);
 }
