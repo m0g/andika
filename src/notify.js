@@ -16,4 +16,4 @@ module.exports = function() {
 
     if (isError) notify.className += ' error';
   }, 2000);
-}
+};

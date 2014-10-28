@@ -10,7 +10,7 @@ module.exports = function(title, editor, currentFile, writer, generateMap,
                           charAndWordCounter, currentNotModified) {
   ipc.sendChannel('window-loaded', true);
 
-  ipc.on('new-file', function(val) {
+  ipc.on('new-file', function() {
     title.innerHTML = 'Andika';
     editor.innerHTML = '';
     currentFile.path = '';
@@ -30,7 +30,9 @@ module.exports = function(title, editor, currentFile, writer, generateMap,
       generateMap();
       charAndWordCounter();
 
-      document.getElementById('home').remove();
+      var home = document.getElementById('home');
+
+      if (home) home.remove();
     }, function() {
       notify('Error: file is not a valid .md or .markdown file', true);
     });
@@ -88,4 +90,4 @@ module.exports = function(title, editor, currentFile, writer, generateMap,
     else
       scrollDocument.toBottom();
   });
-}
+};

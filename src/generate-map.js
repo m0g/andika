@@ -50,4 +50,4 @@ module.exports = function() {
     mapElement.removeChild(mapElement.firstChild);
 
   mapElement.appendChild(frag);
-}
+};

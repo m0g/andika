@@ -1,8 +1,6 @@
 'use strict';
 
 var app = require('app')
-  , Menu = require('menu')
-  , MenuItem = require('menu-item')
   , ipc = require('ipc')
   , MainMenu = require('./main-menu')
   , BrowserWindow = require('browser-window')  // Module to create native browser window
@@ -62,8 +60,7 @@ app.on('ready', function() {
     if (confirmToClose) {
       event.preventDefault();
 
-      var currentWindow = mainWindow
-        , messageBoxOptions = { type: "warning",
+      var messageBoxOptions = { type: "warning",
                                 buttons: ['Save & Quit', 'Cancel', 'Quit'],
                                 message: "Are you sure you want to quit?" };
 
@@ -81,7 +78,7 @@ app.on('ready', function() {
     }
   });
 
-  mainWindow.on('closed', function(event) {
+  mainWindow.on('closed', function() {
     mainWindow = null;
   });
 });

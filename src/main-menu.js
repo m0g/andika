@@ -7,7 +7,7 @@ var Menu = require('menu')
 var MainMenu = function(mainWindow) {
   var currentFile = '',
 
-  newFileClick = function(res) {
+  newFileClick = function() {
     if (mainMenu.confirmToClose)
       messageBox.modified(mainMenu, function() {
         mainWindow.webContents.send('new-file', true);
@@ -19,7 +19,7 @@ var MainMenu = function(mainWindow) {
     }
   },
 
-  openFileClick = function(res) {
+  openFileClick = function() {
     var dialogBox = function() {
       dialog.showOpenDialog({ properties: ['openFile']}, function(res) {
         if (res) {
@@ -45,7 +45,7 @@ var MainMenu = function(mainWindow) {
     else
       dialog.showSaveDialog({ title: 'new-file.md' }, function(res) {
         if (res) {
-          currentFile = res.replace(/\.\w+$/g, '') + '.md'
+          currentFile = res.replace(/\.\w+$/g, '') + '.md';
           mainWindow.webContents.send('save-new-file', currentFile);
         }
       });
@@ -433,12 +433,12 @@ var MainMenu = function(mainWindow) {
 
   this.currentFile = currentFile;
   var mainMenu = this;
-}
+};
 
 MainMenu.prototype.openFileClick = function() {
   var mainMenu = this;
-  dialog.showOpenDialog({ properties: ['openFile']}, function(res) {
-    enableSave();
+  dialog.showOpenDialog({ properties: ['openFile']}, function() {
+    mainMenu.enableSave();
   });
 };
 
@@ -450,7 +450,7 @@ MainMenu.prototype.enableSave = function() {
     this.menu.items[0].submenu.items[2].enabled = true;
     this.mainWindow.setMenu(this.menu);
   }
-}
+};
 
 MainMenu.prototype.saveStatus = function() {
   return this.menu.items[0].submenu.items[1].enabled;
@@ -467,12 +467,12 @@ MainMenu.prototype.save = function(callback) {
   } else
     dialog.showSaveDialog({ title: 'new-file.md' }, function(res) {
       if (res) {
-        mainMenu.currentFile = res.replace(/\.\w+$/g, '') + '.md'
+        mainMenu.currentFile = res.replace(/\.\w+$/g, '') + '.md';
         mainMenu.mainWindow.webContents.send('save-new-file', mainMenu.currentFile);
         callback();
       }
     });
-}
+};
 
 
 module.exports = MainMenu;

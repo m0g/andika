@@ -5,10 +5,7 @@
 
   // Scroll to the top of the document
   exports.toTop = function() {
-    var currentScrollTop = document.getElementById('editor-wrapper').scrollTop
-      , windowHeight = document.body.scrollHeight
-      , documentHeight = document.getElementById('editor').scrollHeight
-      , iteration = (documentHeight / windowHeight) * 5;
+    var currentScrollTop = document.getElementById('editor-wrapper').scrollTop;
 
     scrollAnimation('up', 0, 200, currentScrollTop, 1);
     cursorPosition.toTop();
@@ -17,9 +14,7 @@
   // Scroll to the bottom of the document
   exports.toBottom = function() {
     var currentScrollTop = document.getElementById('editor-wrapper').scrollTop
-      , windowHeight = document.body.scrollHeight
-      , documentHeight = document.getElementById('editor').scrollHeight
-      , iteration = (documentHeight / windowHeight) * 5;
+      , documentHeight = document.getElementById('editor').scrollHeight;
 
     scrollAnimation('down', documentHeight, 200, currentScrollTop, 1);
     cursorPosition.toBottom();

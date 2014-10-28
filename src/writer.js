@@ -3,8 +3,7 @@
 var fs = require('fs')
   , markdown = require( "markdown" ).markdown
   , toMarkdown = require('to-markdown').toMarkdown
-  , sanitizeHtml = require('sanitize-html')
-  , ipc = require('ipc');
+  , sanitizeHtml = require('sanitize-html');
 
 String.prototype.decodeHTML = function() {
   var map = {"gt": ">", "amp": "&", "nbsp": " "};
@@ -49,7 +48,7 @@ Writer.prototype.saveFile = function(filePath, newContent, callback) {
 };
 
 Writer.prototype.hasBeenModified = function(currentBuffer) {
-  return (currentBuffer.length != this.nbChars);
-}
+  return (currentBuffer.length !== this.nbChars);
+};
 
 module.exports = Writer;
