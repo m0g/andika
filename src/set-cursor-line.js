@@ -2,13 +2,9 @@
 
 module.exports = function() {
   var getSelectedNode = function() {
-    //if (document.selection)
-    //  return document.selection.createRange().parentElement();
-    //else {
-      var selection = window.getSelection();
-      if (selection.rangeCount > 0)
-        return selection.getRangeAt(0).startContainer.parentNode;
-    //}
+    var selection = window.getSelection();
+    if (selection.rangeCount > 0)
+      return selection.getRangeAt(0).startContainer.parentNode;
   },
 
   getLastChildTextNode = function(childNodes) {

@@ -1,6 +1,8 @@
-'use strict';
-
 (function() {
+  'use strict';
+
+  var modal = require('./modal');
+
   var sanitizeHtml = require('sanitize-html')
     , cursorPosition = require('./cursor-position');
 
@@ -54,11 +56,21 @@
   };
 
   FormatSelection.prototype.toLink = function() {
-    this.link = document.createElement('a');
-    this.link.href = this.selection.toString();
-    this.link.innerText = this.selection.toString();
-    this.range.deleteContents();
-    this.range.insertNode(this.link);
+    // Regex to figure out if the text is a http link
+    var r = new RegExp('^(?:[a-z]+:)?//', 'i');
+    var selection = this.selection.toString();
+
+    // Fire a dialog asking to type in a link
+    if (!selection.match(r))
+      modal('Hello', function() {
+      });
+    else {
+      this.link = document.createElement('a');
+      this.link.href = this.selection.toString();
+      this.link.innerText = this.selection.toString();
+      this.range.deleteContents();
+      this.range.insertNode(this.link);
+    }
   };
 
   FormatSelection.prototype.toList = function() {

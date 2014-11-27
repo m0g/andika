@@ -423,3 +423,23 @@ code {
   border: 1px solid #aaa;
   box-shadow: inset 0 0 4px #D0CECF;
 }
+
+#modal {
+  display: none;
+}
+
+#modal.visible {
+  display: block;
+  background: pink;
+  position: absolute;
+  box-shadow: 0 0 9px #777;
+  top: 40%;
+  left: 38%;
+  width: 250px;
+  z-index: 3;
+  text-align: center;
+}
+
+#modal.visible input {
+  width: 200px;
+}
