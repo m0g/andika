@@ -4,7 +4,8 @@
   "version": "0.1.0",
   "main": "src/browser.js",
   "scripts": {
-    "bundle": "rework-npm src/source.css -o static/bundle.css"
+    "bundle": "rework-npm src/source.css -o static/bundle.css",
+    "start": "./node_modules/electron-prebuilt/dist/electron ./"
   },
   "dependencies": {
     "markdown": "*",
@@ -17,9 +18,10 @@
   },
   "devDependencies": {
     "clean-css": "~2.1.8",
-    "rework-npm-cli": "~0.1.1",
-    "request": "*",
+    "electron-prebuilt": "^0.25.1",
+    "myth": "~1.0.4",
     "pace": "*",
-    "myth": "~1.0.4"
+    "request": "*",
+    "rework-npm-cli": "~0.1.1"
   }
 }
